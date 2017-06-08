@@ -170,6 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="col-md-8 single-right-grid-right">
                                             <a href="/movies/<?= $mov->id;?>">
                                             <h4 class="media-title"><?= $mov->MovieName ?></h4>
+                                            <?=$mov->getRate($mov->id);?>
                                             </a>
                                     </div>
                             </div>
