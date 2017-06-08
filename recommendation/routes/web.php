@@ -12,22 +12,22 @@
 */
 
 Route::post('/rate', [
-    //'middleware' => 'auth',
+    'middleware' => 'auth',
     'uses' => 'MoviesController@store'
 ]);
 
 Route::get('/result', [
-    //'middleware' => 'auth',
+    'middleware' => 'auth',
     'uses' => 'MoviesController@view'
 ]);
 
 Route::any('/recommend', [
-    //'middleware' => 'auth',
+    'middleware' => 'auth',
     'uses' => 'MoviesController@recommend'
 ]);
 
 Route::get('/movies/{id}', [
-    //'middleware' => 'auth',
+    'middleware' => 'auth',
     'uses' => 'MoviesController@show'
 ]);
 
@@ -37,7 +37,7 @@ Route::get('/', [
 ]);
 
 Route::any('/search', [
-    //'middleware' => 'auth',
+    'middleware' => 'auth',
     'uses' => 'MoviesController@search'
 ]);
 

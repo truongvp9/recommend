@@ -44,9 +44,16 @@ public function index(Movie $movie,Rate $rate){
      }
 
      //
-     public function view(Rate $rate){
+     public function view(Movie $movie,Rate $rate){
         $uid = Auth::id();
-        $rate->where('user_id',$uid)->get();
+        $rates = $rate->where('user_id',$uid)->get();
+        $data['rate'] = $rates;
+        $r = array();
+        foreach ($rates as $value ) {
+           $r[] = $value->video_id;
+        }
+        $data['movie'] = $movie->findMany($r);
+        return view('table',$data);
      }
 
      //
