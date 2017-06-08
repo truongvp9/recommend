@@ -19,7 +19,7 @@ use App\Rate;
 class MoviesController extends Controller 
 {
 
-public function index(Movie $movie){
+public function index(Movie $movie,Rate $rate){
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
         $limit = 15;
@@ -33,6 +33,13 @@ public function index(Movie $movie){
         $data['item'] = $movie->paginate(15);
         $data['page'] = $page;
         $data['next'] = $offset < $total;
+        $uid = Auth::id();
+        $result = $rate->where('user_id',$uid)->get();
+        $r = array();
+        foreach ($result as $value ) {
+           $r[] = $value->video_id;
+        }
+        $data['rate'] = $movie->findMany($r);
         return view('movies',$data);
      }
 
