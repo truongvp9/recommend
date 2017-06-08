@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Http\Request;
+
+use App\Movie;
+
+class MoviesController extends Controller 
+{
+
+//Hoang Anh, [06.06.17 15:38]
+public function index(){
+        $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        if ($page <= 0) $page = 0;
+        $limit = 15;
+        $total = $users = DB::table('movies')->count('id');
+        $offset = $page*$limit;
+        if ($offset < $total) {
+              $users = DB::table('movies')->skip($offset)->take($limit)->get()->toArray();
+        } else {
+          $users = [];
+        }
+        $data['item'] = $users;
+        $data['page'] = $page;
+        $data['next'] = $offset < $total;
+        $data['username'] = "truong";
+        $data['step'] = "truong";
+        /*print_r($data);*/
+        return view('movies',$data);
+        //echo count($users); die;
+     }
+    public function index2(){
+        $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        $limit = 15;
+        $offset = $page*$limit;
+        $users = DB::table('movies')->skip($offset)->take($limit)->get()->toArray();
+        $data['item'] = $users;
+        $data['page'] = $page;
+        return view('movies',$data);
+     }
+    //
+    public function index1(){ 
+        $movies = DB::table('movies')->limit(15)->get()->toArray();
+        $data['item'] = $movies;
+        //$data['username'] = "truong";
+        //$data['step'] = "truong";
+        /*print_r($data);*/
+        return view('movies',$data);
+     }
+     public function create(){
+        echo 'create';
+     }
+     public function store(Request $request){
+        echo 'store';
+     }
+     public function show($id){
+        //  echo 'show'
+        //  echo $id; die;
+        $movie = Movie::find($id);
+        $data['movie'] = $movie;
+        return view('detail',$data);
+     }
+     public function edit($id){
+        echo 'edit';
+     }
+     public function update(Request $request, $id){
+        echo 'update';
+     }
+     public function destroy($id){
+        echo 'destroy';
+     }
+}
