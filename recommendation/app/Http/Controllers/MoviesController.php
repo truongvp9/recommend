@@ -20,7 +20,10 @@ class MoviesController extends Controller
 {
 
 public function index(Movie $movie,Rate $rate){
-        $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        $movies = $movie->where('id','>',200)->paginate(15);
+	    // print_r($movies);
+	    // die();
+	    $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
         $limit = 15;
         $total = $users = DB::table('movies')->count('id');
@@ -30,7 +33,7 @@ public function index(Movie $movie,Rate $rate){
         } else {
           $users = [];
         }
-        $data['item'] = $movie->paginate(15);
+        $data['item'] = $movies;
         $data['page'] = $page;
         $data['next'] = $offset < $total;
         $uid = Auth::id();
@@ -53,8 +56,11 @@ public function index(Movie $movie,Rate $rate){
      public function recommend(Request $request,Rate $rate, Movie $movie){
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
-        $limit = 15;
+        $limit = 15;    
         $offset = $page*$limit;
+        $recommend = (array) json_decode($_POST['irecommend']);
+        $list = $recommend['itemScores'];
+        
         // todo: change recommend data
         $data['item'] = $movie->paginate(15);
         $data['page'] = $page;
@@ -66,7 +72,14 @@ public function index(Movie $movie,Rate $rate){
         foreach ($result as $value ) {
            $r[] = $value->video_id;
         }
+        $i = array();
+        foreach($list as $value){
+            $i[] = $value->item;
+        }
+        //print_r($);
+        //die();
         $data['rate'] = $movie->findMany($r);
+        $data['item'] = $movie->wherein('MovieLensId',$i)->paginate(15);
         return view('recommend',$data);
      }
 
@@ -89,13 +102,18 @@ public function index(Movie $movie,Rate $rate){
         $uid = Auth::id();
         $id = $_POST['id'];
         $rating = $_POST['rate'];
-        if (intval($id)>0) {
+        $option = $_GET['option'];
+        if ((intval($id)>0) && $option==1 ) {
             $rate->video_id = $id;
             $rate->user_id = $uid;
             $rate->rating = $rating;
             $rate->save();
             echo "success";
         }
+        else {
+            
+        }
+
      }
 
      public function search(Request $request, Movie $movie){

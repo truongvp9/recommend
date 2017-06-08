@@ -177,6 +177,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script language="javascript">
 $(document).ready(function(){
-  $('.bxslider').bxSlider();
+  //$('.bxslider').bxSlider();
 });
 </script>

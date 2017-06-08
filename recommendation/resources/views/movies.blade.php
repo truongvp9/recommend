@@ -164,7 +164,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <?php endforeach; ?>
                             </div>
                             <div class="clearfix"> </div><br>
-                            <center><button onclick="javasript:location.href='/recommend'"> Recommend</button></center>
+                            <center>
+                            <form method="POST" id="frecommend" action="/recommend">
+											{{ csrf_field() }}	
+											<input type="hidden" id="irecommend" name="irecommend" value=""/>
+										</form>
+                                                                                <button id="btn_recommend"> Recommend</button></center>
+
 			</div>
 			<!-- footer -->
 			<!-- //footer 
@@ -180,6 +186,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script language="javascript">
 $(document).ready(function(){
-  $('.bxslider').bxSlider();
+  //$('.bxslider').bxSlider();
+  $('#btn_recommend').click(function(){
+		//alert('click');
+		/*$('#frecommend').submit(function(){
+						console.log("Submit success");
+		});*/
+		$.ajax({
+			url:'http://localhost:8002/queries.json',
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			processData : false,
+			data : '{ "user": "1", "num": 4 }',
+			success: function(data){
+                                $('#irecommend').val(JSON.stringify(data));
+				console.log(JSON.stringify(data));
+                                $('#frecommend').submit();		
+			},
+			error: function(err){
+				console.log("Cannot get data",err);		
+			}	
+		});
+	})
 });
 </script>
