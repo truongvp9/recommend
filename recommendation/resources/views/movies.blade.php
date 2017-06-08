@@ -105,8 +105,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="recommended-info">
 						<h3>All Videos</h3>
 					</div>
-
-                                        <?php foreach ($item as $i=>$value):?>
+                                        <center>
+                                           <div class="pagination"> {{ $item->links() }} </div>
+                                        </center>
+                                         <?php foreach ($item as $i=>$value):?>
                                         	<?php if ($i%5 == 0) { ?>
                                         	<div class="clearfix"></div>
                                         	<?php } ?>
