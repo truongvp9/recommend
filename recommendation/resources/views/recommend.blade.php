@@ -93,10 +93,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<?php if ($page <=0) { ?>
 			<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<?php } else { ?>
-			<a href="recommend?page=<?= $page-1 ?>" class="page-nav page-prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="index.php?page=<?= $page-1 ?>" class="page-nav page-prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<?php } ?>
 			<?php if ($next) { ?>
-			<a href="recommend?page=<?= $page+1 ?>" class="page-nav page-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			<a href="index.php?page=<?= $page+1 ?>" class="page-nav page-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 			<?php } else { ?>
 			<a href="javascript:;" class="page-nav page-next disabled"><span class="glyphicon glyphicon-chevron-next"></span></a>
 			<?php } ?>
@@ -124,39 +124,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                             </div>
                                         <?php endforeach; ?>
-                                        <div class="clearfix"> </div>
-                                        <center>
-                                        <div class="pagination"> {{ $item->links() }} </div>
-                                        </center>
-                                </div>
-                            <div class="clearfix"> </div>
-                            <div class="top-grids" style="height:300px;">
-                                <div class="recommended-info">
-						<h3>Rated Videos</h3>
-					</div>
-                                        <?php foreach ($rate as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?>
-                                        	<div class="clearfix"></div>
-                                        	<?php } ?>
-                                            <div class="<?= $i%5==0?'col-sm-2 col-sm-offset-1':'col-sm-2' ?> resent-grid recommended-grid slider-top-grids">
-                                                    <div class="resent-grid-img recommended-grid-img bxslider">
-                                                            <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
-                                                            
-                                                            <div class="time">
-                                                                    <p>3:04</p>
-                                                            </div>
-                                                            <div class="clck">
-                                                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                                            </div>
-                                                    </div>
-                                                    <div class="resent-grid-info recommended-grid-info">
-                                                            <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
-                                                            <?=$value->getRate($value->id);?>
-                                                    </div>
-                                            </div>
-                                            
-                                        <?php endforeach; ?>
-                            </div>
+                                        
+					<div class="clearfix"> </div>
+                                        <center><button onclick="javasript:location.href='/recommend'"> Recommend</button></center>
+				</div>
 			</div>
 			<!-- footer -->
 			<!-- //footer 

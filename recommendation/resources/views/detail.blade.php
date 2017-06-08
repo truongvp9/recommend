@@ -38,7 +38,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
               })
                 .done(function( msg ) {
-                  alert( "Rating " + msg );
+                        var args = msg.split(";");
+                        $.ajax({
+                                        url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        contentType: 'application/json',
+                                        processData : false,
+                                        data : '{ "event" : "rate", "entityType" : "user", "entityId" : "'+args[1]+'", "targetEntityType" : "item", "targetEntityId" : "'+args[0]+'", "properties" : { "rating" : '+parseInt(args[2])'}}',
+                                        success: function(data){
+                                                alert("Rate success!",JSON.stringify(data));		
+                                        },
+                                        error: function(){
+                                                console.log("Cannot connect to server!");		
+                                        }	
+                                });
                 });
             });
         });

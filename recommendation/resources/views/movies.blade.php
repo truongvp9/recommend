@@ -105,7 +105,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="recommended-info">
 						<h3>All Videos</h3>
 					</div>
-
                                         <?php foreach ($item as $i=>$value):?>
                                         	<?php if ($i%5 == 0) { ?>
                                         	<div class="clearfix"></div>
@@ -125,12 +124,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                             </div>
                                         <?php endforeach; ?>
-                                        <div class="clearfix"> </div>
+                                        
+                                                <div class="clearfix"> </div><br>
                                         <center>
-                                        <div class="pagination"> {{ $item->links() }} </div>
-                                        </center>
-                                        <div class="clearfix"> </div>
-                                        <center><button onclick="javasript:location.href='/recommend'"> Recommend</button></center>
+										<form method="POST" id="frecommend" action="/recommend">
+											{{ csrf_field() }}	
+											<input type="hidden" id="irecommend" name="irecommend" value=""/>
+											<button id="btn_recommend" type="submit"> Recommend</button>
+										</form>
+	
+										</center>
 				</div>
 			</div>
 			<!-- footer -->
@@ -143,10 +146,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Placed at the end of the document so the pages load faster -->
   
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	
   </body>
 </html>
 <script language="javascript">
+//doan nay ah b?
 $(document).ready(function(){
-  $('.bxslider').bxSlider();
+  //$('.bxslider').bxSlider();
+  $('#btn_recommend').click(function(){
+		//alert('click');
+		/*$('#frecommend').submit(function(){
+						console.log("Submit success");
+		});*/
+		$.ajax({
+						url:'http://localhost:8002/queries.json',
+						type: 'POST',
+						dataType: 'json',
+						contentType: 'application/json',
+						processData : false,
+						data : '{"user": "'+ {{ Auth::id() }} +'","num":"500"}',
+						success: function(data){
+							//var rs = '{"user": "'+ {{ Auth::id() }} +'","num":"500"}';
+							//			alert("Rate success!",JSON.stringify(rs));
+										console.log("JSON.stringify(rs)");
+								// $('#recommend').val(data);
+								// alert($('#recommend').val());
+								// $('#frecommend').submit(function(){
+								// 	console.log("Submit success");
+								// });
+						},
+						error: function(){
+								console.log("Cannot connect to server!");
+								var rs = 'abcd';
+								//alert(rs);
+								//console.log("JSON.stringify(rs)");
+								$('#irecommend').val(rs);
+								alert($('#irecommend').val());
+								//$('#frecommend').submit(function(){
+								//	alert("Submit success");
+								//});		
+						}	
+		});
+	})
 });
 </script>

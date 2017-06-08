@@ -19,7 +19,7 @@ use App\Rate;
 class MoviesController extends Controller 
 {
 
-public function index(Movie $movie){
+public function index(){
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
         $limit = 15;
@@ -30,7 +30,7 @@ public function index(Movie $movie){
         } else {
           $users = [];
         }
-        $data['item'] = $movie->paginate(15);
+        $data['item'] = $users;
         $data['page'] = $page;
         $data['next'] = $offset < $total;
         return view('movies',$data);
@@ -43,36 +43,25 @@ public function index(Movie $movie){
      }
 
      //
-     public function recommend(Request $request,Rate $rate, Movie $movie){
-        $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
-        if ($page <= 0) $page = 0;
-        $limit = 15;
-        $offset = $page*$limit;
-        // todo: change recommend data
-        $data['item'] = $movie->paginate(15);
-        $data['page'] = $page;
-        $total = count($data['item']);
-        $data['next'] = $offset < $total;
-        $uid = Auth::id();
-        $result = $rate->where('user_id',$uid)->get();
-        $r = array();
-        foreach ($result as $value ) {
-           $r[] = $value->video_id;
-        }
-        $data['rate'] = $movie->findMany($r);
-        return view('recommend',$data);
+     public function recommend(Request $request, Movie $movie){
+        // $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        // if ($page <= 0) $page = 0;
+        // $limit = 15; 
+        // $offset = $page*$limit;
+        // // todo: change recommend data
+        // $data['item'] = $movie->all();
+        // $data['page'] = $page;
+        // $total = count($data['item']);
+        // $data['next'] = $offset < $total;
+        $recommendData = $_POST['irecommend'];
+        //cho nay ne dinh menh
+        echo $recommendData;
+        echo "sao eo ra";
+        //return redirect('movies/3');
+        //var_dump($recommendData);
+        //return view('recommend',$data);
      }
 
-     public function getRateVideo(Rate $rate, Movie $movie) {
-         $uid = Auth::id();
-         $result = $rate->where('user_id',$uid)->get();
-         $r = array();
-         foreach ($result as $value ) {
-            $r[] = $value->video_id;
-         }
-         return $movie->findMany($r);
-     }
-     
      public function create(){
         echo 'create';
      }

@@ -21,7 +21,7 @@ Route::get('/result', [
     'uses' => 'MoviesController@view'
 ]);
 
-Route::get('/recommend', [
+Route::any('/recommend', [
     //'middleware' => 'auth',
     'uses' => 'MoviesController@recommend'
 ]);
