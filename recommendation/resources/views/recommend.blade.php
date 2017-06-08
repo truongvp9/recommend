@@ -134,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </center>
                                 </div>
                             <div class="clearfix"> </div>
-                            <div class="top-grids" style="height:300px;">
+                            <div class="top-grids" style="height:700px;">
                                 <div class="recommended-info">
 						<h3>Rated Videos</h3>
 					</div>

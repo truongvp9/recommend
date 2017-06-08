@@ -19,8 +19,9 @@ use App\Rate;
 class MoviesController extends Controller 
 {
 
-public function index(Movie $movie,Rate $rate){
+public function index(Request $request, Movie $movie,Rate $rate){
         $movies = $movie->where('id','>',200)->paginate(15);
+        $request->session()->put('option', '1');
 	    // print_r($movies);
 	    // die();
 	    $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
@@ -37,7 +38,7 @@ public function index(Movie $movie,Rate $rate){
         $data['page'] = $page;
         $data['next'] = $offset < $total;
         $uid = Auth::id();
-        $result = $rate->where('user_id',$uid)->get();
+        $result = $rate->where('user_id',$uid)->where('option',1)->get();
         $r = array();
         foreach ($result as $value ) {
            $r[] = $value->video_id;
@@ -55,6 +56,7 @@ public function index(Movie $movie,Rate $rate){
      //
      public function recommend(Request $request,Rate $rate, Movie $movie){
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        $request->session()->put('option', '2');
         if ($page <= 0) $page = 0;
         $limit = 15;    
         $offset = $page*$limit;
@@ -67,7 +69,7 @@ public function index(Movie $movie,Rate $rate){
         $total = count($data['item']);
         $data['next'] = $offset < $total;
         $uid = Auth::id();
-        $result = $rate->where('user_id',$uid)->get();
+        $result = $rate->where('user_id',$uid)->where('option',2)->get();
         $r = array();
         foreach ($result as $value ) {
            $r[] = $value->video_id;
@@ -97,23 +99,23 @@ public function index(Movie $movie,Rate $rate){
         echo 'create';
      }
 
-     public function store(Rate $rate){
+     public function store(Request $request, Rate $rate){
         //  write to rate   
         $uid = Auth::id();
         $id = $_POST['id'];
         $rating = $_POST['rate'];
-        $option = $_GET['option'];
-        if ((intval($id)>0) && $option==1 ) {
+        $option = $request->session()->get('option');
+        if ((intval($id)>0) && (intval($option)>0) ) {
             $rate->video_id = $id;
             $rate->user_id = $uid;
             $rate->rating = $rating;
+            $rate->option = $option;
             $rate->save();
             echo "success";
         }
         else {
-            
+            echo "fail";
         }
-
      }
 
      public function search(Request $request, Movie $movie){
