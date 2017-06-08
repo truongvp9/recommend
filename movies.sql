@@ -19,23 +19,6 @@
 -- Table structure for table `moviefilter`
 --
 
-DROP TABLE IF EXISTS `movies`.`movies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `movies`.`movies` (
-  `Id` int(10) NOT NULL AUTO_INCREMENT,
-  `MovieName` varchar(255) DEFAULT NULL,
-  `Image` varchar(255) DEFAULT NULL,
-  `Country` varchar(255) DEFAULT NULL,
-  `Genre1` varchar(255) DEFAULT NULL,
-  `Genre2` varchar(255) DEFAULT NULL,
-  `Genre3` varchar(255) DEFAULT NULL,
-  `TmdbId` varchar(255) DEFAULT NULL,
-  `MovieLensId` varchar(255) DEFAULT NULL,
-  `AverageRating` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `moviefilter`
