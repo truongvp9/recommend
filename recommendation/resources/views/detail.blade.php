@@ -52,6 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=$url;?>/js/jquery.magnific-popup.js" type="text/javascript"></script>
 <!-- //fonts -->
 <style>
+	.single-right-grids {
+		display: table;
+	}
 	#img-main {
 		width: 100%;
 		height: auto;
