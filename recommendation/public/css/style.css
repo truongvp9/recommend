@@ -2764,3 +2764,65 @@ background: url(../images/social.png) no-repeat 0px 0px;
 		padding: .52em 1em .52em 3em;
 	}
 }
+
+
+
+
+
+.col-5 {
+	position: relative;
+  	min-height: 1px;
+  	padding-right: 15px;
+  	padding-left: 15px;
+  	width: 20%;
+  	float: left;
+}
+
+
+.slogan {
+	position: absolute;
+	left: 0;
+	right: 100px;
+	text-align: center;
+	padding: 5px 0;
+}
+.slogan .slogan-title {
+	display: block;
+	font-weight: bold;
+	margin: 0;
+	
+}
+
+.header-top-right.top-search input[type=text] {
+	min-width: 280px;
+}
+
+
+
+.page-nav {
+		position: absolute;
+		display: table;
+		font-size: 20px;
+		background-color: rgba(0,0,0,.3);
+		color: #ccc;
+		top: 40%;
+		padding: 10px;
+		border-radius: 22px;
+		z-index: 10000;
+	}
+	.page-nav:hover {
+		color: #fff;
+	}
+	.page-nav.disabled {
+		background-color: rgba(0,0,0,.1);
+	}
+	.page-prev {
+		left: 0;
+	}
+	.page-next {
+		right: 0;
+	}
+	
+.single-right-grids {
+		display: table;
+	}
