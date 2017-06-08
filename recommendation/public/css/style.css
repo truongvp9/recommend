@@ -2781,8 +2781,8 @@ background: url(../images/social.png) no-repeat 0px 0px;
 
 .slogan {
 	position: absolute;
-	left: 0;
-	right: 100px;
+	left: 100px;
+	right: 200px;
 	text-align: center;
 	padding: 5px 0;
 }
