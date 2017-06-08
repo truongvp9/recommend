@@ -29,6 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=$url;?>js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
+        var url = '<?=$url;?>';
         //alert('hi');
         $('.rate').click(function(){
             var rate = $(this).attr("id");
@@ -38,7 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
               })
                 .done(function( msg ) {
-                  alert( "Rating " + msg );
+                    alert( "Rating " + msg );
+                    $( location ).attr("href", url);
                 });
             });
         });

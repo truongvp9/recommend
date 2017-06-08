@@ -161,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             
                                         <?php endforeach; ?>
                             </div>
-                            <div class="clearfix"> </div>
+                            <div class="clearfix"> </div><br>
                             <center><button onclick="javasript:location.href='/recommend'"> Recommend</button></center>
 			</div>
 			<!-- footer -->
