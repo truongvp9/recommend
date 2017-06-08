@@ -187,6 +187,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script language="javascript">
 $(document).ready(function(){
   //$('.bxslider').bxSlider();
+  console.log({{Auth::id()}});
+  user = {{Auth::id()}};
   $('#btn_recommend').click(function(){
 		//alert('click');
 		/*$('#frecommend').submit(function(){
@@ -198,7 +200,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			contentType: 'application/json',
 			processData : false,
-			data : '{ "user": "1", "num": 4 }',
+			data : '{ "user":"'+user+'", "num": 500 }',
 			success: function(data){
                                 $('#irecommend').val(JSON.stringify(data));
 				console.log(JSON.stringify(data));

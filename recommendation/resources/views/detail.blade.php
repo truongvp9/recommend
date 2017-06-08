@@ -31,6 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $(document).ready(function () {
         var url = '<?=$url;?>';
         //alert('hi');
+        var user = {{Auth::Id()}}
+        var id_movielens = <?= $movie->MovieLensId ?>;
         $('.rate').click(function(){
             var rate = $(this).attr("id");
             $.ajax({
@@ -39,8 +41,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
               })
                 .done(function( msg ) {
-                    alert( "Rating " + msg );
-                    $( location ).attr("href", url);
+                        if (msg == 'success'){
+                                $.ajax({
+                                        url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        contentType: 'application/json',
+                                        processData : false,
+                                        data : '{ "event" : "rate", "entityType" : "user", "entityId" : "'+user+'", "targetEntityType" : "item", "targetEntityId" : "'+id_movielens+'", "properties" : { "rating" : '+rate+'}}',
+                                        success: function(data){
+                                                console.log(JSON.stringify(data));		
+                                        },
+                                        error: function(){
+                                                console.log("Cannot get data");		
+                                        }	
+                                });
+                        }
+                  alert( "Rating " + msg );
                 });
             });
         });
