@@ -8,6 +8,11 @@ use App\Rate;
 
 class Movie extends Model
 {
+    public function getCategory($video_id) {
+        $movie = Movie::find($video_id);
+        return $movie->Genre1.' '.$movie->Genre2.' '.$movie->Genre3;
+    }
+    
     public function getRate($video_id) {
          $r = Rate::where('video_id',$video_id)->get()->first();
          return $this->rating($r->rating);

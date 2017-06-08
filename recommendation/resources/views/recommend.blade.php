@@ -121,6 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                                     <div class="resent-grid-info recommended-grid-info">
                                                             <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
+                                                            <?php echo $value->getCategory($value->id);?><br>
                                                     </div>
                                             </div>
                                         <?php endforeach; ?>
@@ -151,6 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                                     <div class="resent-grid-info recommended-grid-info">
                                                             <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
+                                                            <?php echo $value->getCategory($value->id);?><br>
                                                             <?=$value->getRate($value->id);?>
                                                     </div>
                                             </div>
