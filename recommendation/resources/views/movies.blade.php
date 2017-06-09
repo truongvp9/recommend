@@ -30,32 +30,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 <!-- //fonts -->
-<style>
-	.page-nav {
-		position: absolute;
-		display: table;
-		font-size: 20px;
-		background-color: rgba(0,0,0,.3);
-		color: #ccc;
-		top: 40%;
-		padding: 10px;
-		border-radius: 22px;
-		z-index: 10000;
-		margin: 0 20px;
-	}
-	.page-nav:hover {
-		color: #fff;
-	}
-	.page-nav.disabled {
-		background-color: rgba(0,0,0,.1);
-	}
-	.page-prev {
-		left: 0;
-	}
-	.page-next {
-		right: 0;
-	}
-</style>
 </head>
   <body>
 
@@ -71,16 +45,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
         </div>
 
+        <div class="slogan" id="slogan">
+        	<h2 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h2>
+        	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+        </div>
+
         <div id="navbar" class="navbar-collapse collapse">
-			<div class="top-search">
+			<div class="header-top-right top-search">
 				<form class="navbar-form navbar-right" action="/search" method="post">
                                         {{ csrf_field() }}	
                                         <input type="text" class="form-control" placeholder="Search..." name="key">
 					<input type="submit" value=" ">
 				</form>
-			</div>
-			<div class="header-top-right">
-				<div class="clearfix"> </div>
 			</div>
         </div>
         
@@ -89,7 +65,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </nav>
 	
         
-        <div class="container-fluid main">
+
+<div class="container-fluid main">
+	<div class="col-sm-9">
         	<?php if ($page <=0) { ?>
 			<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<?php } else { ?>
@@ -105,14 +83,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="recommended-info">
 						<h3>All Videos</h3>
 					</div>
-                                        <center>
-                                           <div class="pagination"> {{ $item->links() }} </div>
-                                        </center>
-                                         <?php foreach ($item as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?>
-                                        	<div class="clearfix"></div>
-                                        	<?php } ?>
-                                            <div class="<?= $i%5==0?'col-sm-2 col-sm-offset-1':'col-sm-2' ?> resent-grid recommended-grid slider-top-grids">
+
+                                        <?php foreach ($item as $i=>$value):?>
+                                        	<?php if ($i%5 == 0) { ?><div class="clearfix"></div><?php } ?>
+                                            <div class="col-5 resent-grid recommended-grid slider-top-grids">
                                                     <div class="resent-grid-img recommended-grid-img bxslider">
                                                             <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
                                                             <div class="time">
@@ -135,35 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="pagination"> {{ $item->links() }} </div>
                                         </center>
 				</div>
-                            <div class="top-grids" style="height:300px;">
-                                <div class="recommended-info">
-						<h3>Rated Videos</h3>
-					</div>
-                                        <?php foreach ($rate as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?>
-                                        	<div class="clearfix"></div>
-                                        	<?php } ?>
-                                            <div class="<?= $i%5==0?'col-sm-2 col-sm-offset-1':'col-sm-2' ?> resent-grid recommended-grid slider-top-grids">
-                                                    <div class="resent-grid-img recommended-grid-img bxslider">
-                                                            <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
-                                                            
-                                                            <div class="time">
-                                                                    <p>3:04</p>
-                                                            </div>
-                                                            <div class="clck">
-                                                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                                            </div>
-                                                    </div>
-                                                    <div class="resent-grid-info recommended-grid-info">
-                                                            <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
-                                                            <?php echo $value->getCategory($value->id);?><br>
-                                                            <?=$value->getRate($value->id);?>
-                                                    </div>
-                                            </div>
-                                            
-                                        <?php endforeach; ?>
-                            </div>
-                            <div class="clearfix"> </div><br>
+                                                        <div class="clearfix"> </div><br>
                             <center>
                             <form method="POST" id="frecommend" action="/recommend">
 											{{ csrf_field() }}	
@@ -171,18 +117,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</form>
                                                                                 <button id="btn_recommend"> Recommend</button></center>
 
-			</div>
-			<!-- footer -->
-			<!-- //footer 
-		</div>
-		<div class="clearfix"> </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  </body>
+			</div>
+	</div>
+  	<div class="col-sm-3">
+  		<?php foreach ($rate as $mov) { ?>
+        <div class="single-right-grids">
+                <div class="col-md-4 single-right-grid-left">
+                    <a href="/movies/<?= $mov->id;?>">
+                        <img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
+                    </a>
+                </div>
+                <div class="col-md-8 single-right-grid-right">
+                        <a href="/movies/<?= $mov->id;?>">
+                        <h4 class="media-title"><?= $mov->MovieName ?></h4>
+                        </a>
+                        <?=$mov->getRate($mov->id);?>
+                </div>
+        </div>
+        <?php } ?>
+  		
+  		
+  		
+  		
+  		
+  	</div>
+  		
+</div>
+</body>
 </html>
 <script language="javascript">
 $(document).ready(function(){
@@ -191,9 +153,9 @@ $(document).ready(function(){
   user = {{Auth::id()}};
   $('#btn_recommend').click(function(){
 		//alert('click');
-		/*$('#frecommend').submit(function(){
+		$('#frecommend').submit(function(){
 						console.log("Submit success");
-		});*/
+		});
 		$.ajax({
 			url:'http://localhost:8002/queries.json',
 			type: 'POST',
