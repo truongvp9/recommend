@@ -48,9 +48,16 @@ public function index(Request $request, Movie $movie,Rate $rate){
      }
 
      //
-     public function view(Rate $rate){
+     public function view(Movie $movie,Rate $rate){
         $uid = Auth::id();
-        $rate->where('user_id',$uid)->get();
+        $rates = $rate->where('user_id',$uid)->get();
+        $data['rate'] = $rates;
+        $r = array();
+        foreach ($rates as $value ) {
+           $r[] = $value->video_id;
+        }
+        $data['movie'] = $movie->findMany($r);
+        return view('table',$data);
      }
 
      //
@@ -101,6 +108,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
 
      public function store(Request $request, Rate $rate){
         //  write to rate   
+        $r = array('Not sure','1. Bad','2. Not good','3. What ever','4. Very Good','5. Great');
         $uid = Auth::id();
         $id = $_POST['id'];
         $rating = $_POST['rate'];
@@ -111,7 +119,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
             $rate->rating = $rating;
             $rate->option = $option;
             $rate->save();
-            echo "success";
+            echo $r[$rating];
         }
         else {
             echo "fail";

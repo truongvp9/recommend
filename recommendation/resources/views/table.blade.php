@@ -67,22 +67,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="container-fluid main">
 	<div class="col-sm-9">
-		<h2>Page header</h2>
+		<h2>Kết quả đánh giá</h2>
 		<!-- TABLE BEGIN -->
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Column 1</th>
-						<th>Column 2</th>
-						<th>Column 3</th>
+						<th>Video</th>
+						<th>Đánh giá</th>
+						<th>Dự đoán</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php for ($i=0; $i<20; $i++) { ?>
+					<?php foreach ($movie as $item) { ?>
 					<tr>
-						<td>Value</td>
-						<td>Value</td>
+						<td><?=$item->MovieName;?></td>
+						<td><?=$item->getRate($item->id);?></td>
 						<td>Value</td>
 					</tr>
 					<?php } ?>
