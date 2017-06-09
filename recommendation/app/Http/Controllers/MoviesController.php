@@ -93,6 +93,7 @@ public function index(Movie $movie,Rate $rate){
 
      public function store(Rate $rate){
         //  write to rate   
+        $r = array('Not sure','1. Bad','2. Not good','3. What ever','4. Very Good','5. Great');
         $uid = Auth::id();
         $id = $_POST['id'];
         $rating = $_POST['rate'];
@@ -101,7 +102,7 @@ public function index(Movie $movie,Rate $rate){
             $rate->user_id = $uid;
             $rate->rating = $rating;
             $rate->save();
-            echo "success";
+            echo $r[$rating];
         }
      }
 
