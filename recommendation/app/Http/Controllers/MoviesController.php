@@ -20,13 +20,13 @@ class MoviesController extends Controller
 {
 
 public function index(Request $request, Movie $movie,Rate $rate){
-        $movies = $movie->where('id','>',200)->paginate(15);
+        $movies = $movie->where('id','>',200)->paginate(12);
         $request->session()->put('option', '1');
 	    // print_r($movies);
 	    // die();
 	    $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
-        $limit = 15;
+        $limit = 12;
         $total = $users = DB::table('movies')->count('id');
         $offset = $page*$limit;
         if ($offset < $total) {
@@ -62,16 +62,22 @@ public function index(Request $request, Movie $movie,Rate $rate){
 
      //
      public function recommend(Request $request,Rate $rate, Movie $movie){
+
+	$recommend = array();
+	if (isset($_POST['irecommend'])) {
+		$recommend = (array) json_decode($_POST['irecommend']);
+		$request->session()->put('option', '2');
+		$request->session()->put('recommend',$recommend);
+	}
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
-        $request->session()->put('option', '2');
         if ($page <= 0) $page = 0;
-        $limit = 15;    
+        $limit = 12;    
         $offset = $page*$limit;
-        $recommend = (array) json_decode($_POST['irecommend']);
+        $recommend = $request->session()->get('recommend');
         $list = $recommend['itemScores'];
         
         // todo: change recommend data
-        $data['item'] = $movie->paginate(15);
+        $data['item'] = $movie->paginate(12);
         $data['page'] = $page;
         $total = count($data['item']);
         $data['next'] = $offset < $total;
@@ -88,7 +94,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
         //print_r($);
         //die();
         $data['rate'] = $movie->findMany($r);
-        $data['item'] = $movie->wherein('MovieLensId',$i)->paginate(15);
+        $data['item'] = $movie->wherein('MovieLensId',$i)->paginate(12);
         return view('recommend',$data);
      }
 

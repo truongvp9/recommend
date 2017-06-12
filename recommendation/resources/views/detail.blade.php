@@ -219,22 +219,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           document.location.href='/index.php';
                   }
                   else {
-                        $.ajax({
-                                url:'http://localhost:8002/queries.json',
-                                type: 'POST',
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                processData : false,
-                                data : '{ "user":"'+user+'", "num": 500 }',
-                                success: function(data){
-                                        $('#irecommend').val(JSON.stringify(data));
-                                        console.log("Data:",JSON.stringify(data));
-                                        $('#frecommend').submit();		
-                                },
-                                error: function(err){
-                                        alert("Cannot get data",err);		
-                                }	
-                        });
+                  	document.location.href='/recommend';
                   }
                 });
             });

@@ -66,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
 
 <div class="container-fluid main">
-	<div class="col-sm-9">
+	<div class="col-sm-11">
         	<?php if ($page <=0) { ?>
 			<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<?php } else { ?>
@@ -80,12 +80,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main-grids">
 				<div class="top-grids">
 					<div class="recommended-info">
-						<h3>All Videos</h3>
+						<h3> Recommended Videos</h3>
 					</div>
 
                                         <?php foreach ($item as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?><div class="clearfix"></div><?php } ?>
-                                            <div class="col-5 resent-grid recommended-grid slider-top-grids">
+                                        	<?php if ($i%6 == 0) { ?><div class="clearfix"></div><?php } ?>
+                                            <div class="col-sm-2 resent-grid recommended-grid slider-top-grids">
                                                     <div class="resent-grid-img recommended-grid-img bxslider">
                                                             <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
                                                             <div class="time">
@@ -109,48 +109,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </center>
                                 </div>
                             <div class="clearfix"> </div>
-                            <div class="top-grids" style="height:700px;">
-                                <div class="recommended-info">
-						<h3>Rated Videos</h3>
-					</div>
-                                        <?php foreach ($rate as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?>
-                                        	<div class="clearfix"></div>
-                                        	<?php } ?>
-                                            <div class="<?= $i%5==0?'col-sm-2 col-sm-offset-1':'col-sm-2' ?> resent-grid recommended-grid slider-top-grids">
-                                                    <div class="resent-grid-img recommended-grid-img bxslider">
-                                                            <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
-                                                            
-                                                            <div class="time">
-                                                                    <p>3:04</p>
-                                                            </div>
-                                                            <div class="clck">
-                                                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                                            </div>
-                                                    </div>
-                                                    <div class="resent-grid-info recommended-grid-info">
-                                                            <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
-                                                            <?php echo $value->getCategory($value->id);?><br>
-                                                            <?=$value->getRate($value->id);?>
-                                                    </div>
-                                            </div>
-                                            
-                                        <?php endforeach; ?>
-                            </div>
-			</div>
+                           			</div>
+			<center>
+				<button onclick="document.location.href='/result'">Result</button>
+			</center>
 	</div>
-  	<div class="col-sm-3">
+  	<div class="col-sm-1">
   		<?php foreach ($rate as $mov) { ?>
         <div class="single-right-grids">
-                <div class="col-md-4 single-right-grid-left">
+                <div class="single-right-grid-left">
                     <a href="/movies/<?= $mov->id;?>">
                         <img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
                     </a>
-                </div>
-                <div class="col-md-8 single-right-grid-right">
-                        <a href="/movies/<?= $mov->id;?>">
-                        <h4 class="media-title"><?= $mov->MovieName ?></h4>
-                        </a>
+			<small>
+				<?=$mov->getRate($mov->id);?>
+			</small>
                 </div>
         </div>
         <?php } ?>
