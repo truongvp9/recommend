@@ -192,7 +192,7 @@ $(document).ready(function(){
                                 $('#frecommend').submit();		
 			},
 			error: function(err){
-				console.log("Cannot get data",err);		
+				alert("Error: Cannot get data",err);		
 			}	
 		});
 	})

@@ -47,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="slogan" id="slogan">
         	<h2 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h2>
-        	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+        	<div>Buoc 2: Danh gia: Sau day la danh sach cac phim duoc gioi thieu dua tren cac phim lua chon o Buoc 1. Ban hay danh gia cac phim ban da xem</div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right top-search">

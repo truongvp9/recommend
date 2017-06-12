@@ -154,14 +154,15 @@ public function index(Request $request, Movie $movie,Rate $rate){
             $h->rating = 0;
             $h->save();
         }*/
-        $history = $h->where('user_id',$uid)->get();
+        $option = $request->session()->get('option');
+        $history = $h->where('user_id',$uid)->where('option',$option)->get();
         $his = array();
         foreach ($history as $value ) {
             $his[] = $value->video_id;
         }
         $history = Movie::findMany($his);
         $movie = Movie::find($id);
-        $option = $request->session()->get('option');
+        
         $data['movie'] = $movie;
         $data['history'] = $history;
         $data['option'] = $option;
