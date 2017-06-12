@@ -109,15 +109,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="pagination"> {{ $item->links() }} </div>
                                         </center>
 				</div>
-                                                        <div class="clearfix"> </div><br>
+                            <div class="top-grids" style="height:300px;">
+                                <div class="recommended-info">
+						<h3>Rated Videos</h3>
+					</div>
+                                        <?php foreach ($rate as $i=>$value):?>
+                                        	<?php if ($i%5 == 0) { ?>
+                                        	<div class="clearfix"></div>
+                                        	<?php } ?>
+                                            <div class="<?= $i%5==0?'col-sm-2 col-sm-offset-1':'col-sm-2' ?> resent-grid recommended-grid slider-top-grids">
+                                                    <div class="resent-grid-img recommended-grid-img bxslider">
+                                                            <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
+                                                            
+                                                            <div class="time">
+                                                                    <p>3:04</p>
+                                                            </div>
+                                                            <div class="clck">
+                                                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="resent-grid-info recommended-grid-info">
+                                                            <h3><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a></h3>
+                                                            <?php echo $value->getCategory($value->id);?><br>
+                                                            <?=$value->getRate($value->id);?>
+                                                    </div>
+                                            </div>
+                                            
+                                        <?php endforeach; ?>
+                            </div>
+                            <div class="clearfix"> </div><br>
                             <center>
                             <form method="POST" id="frecommend" action="/recommend">
 											{{ csrf_field() }}	
 											<input type="hidden" id="irecommend" name="irecommend" value=""/>
 										</form>
                                                                                 <button id="btn_recommend"> Recommend</button></center>
-
-
 			</div>
 	</div>
   	<div class="col-sm-3">
@@ -153,9 +179,6 @@ $(document).ready(function(){
   user = {{Auth::id()}};
   $('#btn_recommend').click(function(){
 		//alert('click');
-		$('#frecommend').submit(function(){
-						console.log("Submit success");
-		});
 		$.ajax({
 			url:'http://localhost:8002/queries.json',
 			type: 'POST',
@@ -165,7 +188,7 @@ $(document).ready(function(){
 			data : '{ "user":"'+user+'", "num": 500 }',
 			success: function(data){
                                 $('#irecommend').val(JSON.stringify(data));
-				console.log(JSON.stringify(data));
+				console.log("Data:",JSON.stringify(data));
                                 $('#frecommend').submit();		
 			},
 			error: function(err){

@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<tr>
 						<td><?=$item->MovieName;?></td>
 						<td><?=$item->getRate($item->id);?></td>
-						<td>Value</td>
+						<td><?=$item->AverageRating; ?></td>
 					</tr>
 					<?php } ?>
 				</tbody>
@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<!-- TABLE END -->
 	</div>
-  	<div class="col-sm-3">
+  	<!--<div class="col-sm-3">
   		<?php foreach ($rate as $mov) { ?>
         <div class="single-right-grids">
                 <div class="col-md-4 single-right-grid-left">
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   		
   		
   		
-  	</div>
+  	</div>-->
   		
 </div>
 </body>

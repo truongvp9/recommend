@@ -50,7 +50,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
      //
      public function view(Movie $movie,Rate $rate){
         $uid = Auth::id();
-        $rates = $rate->where('user_id',$uid)->get();
+        $rates = $rate->where('user_id',$uid)->where('option',2)->get();
         $data['rate'] = $rates;
         $r = array();
         foreach ($rates as $value ) {
@@ -161,8 +161,10 @@ public function index(Request $request, Movie $movie,Rate $rate){
         }
         $history = Movie::findMany($his);
         $movie = Movie::find($id);
+        $option = $request->session()->get('option');
         $data['movie'] = $movie;
         $data['history'] = $history;
+        $data['option'] = $option;
         return view('detail',$data);
      }
 

@@ -31,8 +31,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $(document).ready(function () {
         var url = '<?=$url;?>';
         //alert('hi');
-        var user = {{Auth::Id()}}
+        var user = {{Auth::Id()}};
+        console.log('auth::id', user);
         var id_movielens = <?= $movie->MovieLensId ?>;
+        var option = <?= $option ?>;
+        console.log(option);
+        console.log('movie_id',id_movielens);
         $('.rate').click(function(){
             var rate = $(this).attr("id");
             $.ajax({
@@ -41,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
               })
                 .done(function( msg ) {
-                        if (msg == 'success'){
+                        if (msg != 'fail' && option == 1) {
                                 $.ajax({
                                         url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
                                         type: 'POST',
