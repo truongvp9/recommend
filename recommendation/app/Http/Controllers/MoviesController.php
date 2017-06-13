@@ -22,9 +22,7 @@ class MoviesController extends Controller
 public function index(Request $request, Movie $movie,Rate $rate){
         $movies = $movie->where('id','>',200)->paginate(12);
         $request->session()->put('option', '1');
-	    // print_r($movies);
-	    // die();
-	    $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+	$page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
         $limit = 12;
         $total = $users = DB::table('movies')->count('id');

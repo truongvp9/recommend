@@ -1,3 +1,5 @@
+@extends('help')
+
 @extends('layouts.app')
 
 <!--
@@ -21,8 +23,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/dashboard.css" rel="stylesheet">
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
-<script src="/js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
@@ -52,12 +55,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right top-search">
+                                
 				<form class="navbar-form navbar-right" action="/search" method="post">
-                                        {{ csrf_field() }}	
-                                        <input type="text" class="form-control" placeholder="Search..." name="key">
+                                        {{ csrf_field() }}
+                                        <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
+                                        <input type="text" style="z-index:0" class="form-control" placeholder="Search..." name="key">
 					<input type="submit" value=" ">
 				</form>
 			</div>
+            
         </div>
         
         <div class="clearfix"> </div>
@@ -81,6 +87,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main-grids">
 				<div class="top-grids">
 					<div class="recommended-info">
+                                                                            
+                                            <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
+
 						<h3>All Videos</h3>
 					</div>
 
@@ -115,10 +124,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											{{ csrf_field() }}	
 											<input type="hidden" id="irecommend" name="irecommend" value=""/>
 										</form>
+                                <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi </a>
                                                                                 <button id="btn_recommend"> Recommend</button></center>
 			</div>
 	</div>
   	<div class="col-sm-1">
+                               <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
+
   		<?php foreach ($rate as $mov) { ?>
         <div class="single-right-grids">
                 <div class="single-right-grid-left">
@@ -130,16 +142,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <?php } ?>
   		
-  		
-  		
-  		
+
   		
   	</div>
   		
 </div>
 </body>
 </html>
-<script language="javascript">
+
+<script laguage="javascript">
 $(document).ready(function(){
   //$('.bxslider').bxSlider();
   console.log({{Auth::id()}});
@@ -165,3 +176,4 @@ $(document).ready(function(){
 	})
 });
 </script>
+
