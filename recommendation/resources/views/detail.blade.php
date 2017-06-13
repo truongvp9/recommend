@@ -27,41 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script src="<?=$url;?>/js/jquery-1.11.1.min.js"></script>
 <script src="<?=$url;?>js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var url = '<?=$url;?>';
-        //alert('hi');
-        var user = {{Auth::Id()}}
-        var id_movielens = <?= $movie->MovieLensId ?>;
-        $('.rate').click(function(){
-            var rate = $(this).attr("id");
-            $.ajax({
-                method: "POST",
-                url: "<?=$url;?>/rate",
-                data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
-              })
-                .done(function( msg ) {
-                        if (msg == 'success'){
-                                $.ajax({
-                                        url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
-                                        type: 'POST',
-                                        dataType: 'json',
-                                        contentType: 'application/json',
-                                        processData : false,
-                                        data : '{ "event" : "rate", "entityType" : "user", "entityId" : "'+user+'", "targetEntityType" : "item", "targetEntityId" : "'+id_movielens+'", "properties" : { "rating" : '+rate+'}}',
-                                        success: function(data){
-                                                console.log(JSON.stringify(data));		
-                                        },
-                                        error: function(){
-                                                console.log("Cannot get data");		
-                                        }	
-                                });
-                        }
-                  alert( "Rating " + msg );
-                });
-            });
-        });
-</script>
+
 <!--start-smoth-scrolling-->
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -201,6 +167,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
                 </div>
 		</div>
+                <form method="POST" id="frecommend" action="/recommend">
+                        {{ csrf_field() }}	
+                        <input type="hidden" id="irecommend" name="irecommend" value=""/>
+                </form>
             
 		<div class="clearfix"> </div>
 
@@ -210,4 +180,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
   </body>
+  <script>
+    $(document).ready(function () {
+        var url = '<?=$url;?>';
+        //alert('hi');
+        var user = {{Auth::Id()}};
+        console.log('auth::id', user);
+        var id_movielens = <?= $movie->MovieLensId ?>;
+        var option = <?= $option ?>;
+        console.log(option);
+        console.log('movie_id',id_movielens);
+        $('.rate').click(function(){
+            var rate = $(this).attr("id");
+            $.ajax({
+                method: "POST",
+                url: "<?=$url;?>/rate",
+                data: { id: <?=$movie->id?>, rate: rate,_token: "<?=csrf_token();?>" }
+              })
+                .done(function( msg ) {
+                        if (msg != 'fail' && option == 1) {
+                                $.ajax({
+                                        url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        contentType: 'application/json',
+                                        processData : false,
+                                        data : '{ "event" : "rate", "entityType" : "user", "entityId" : "'+user+'", "targetEntityType" : "item", "targetEntityId" : "'+id_movielens+'", "properties" : { "rating" : '+rate+'}}',
+                                        success: function(data){
+                                                console.log(JSON.stringify(data));		
+                                        },
+                                        error: function(){
+                                                console.log("Cannot get data");		
+                                        }	
+                                });
+                        }
+                  alert( "Rating " + msg );
+                  if (option == 1) {
+                          document.location.href='/index.php';
+                  }
+                  else {
+                  	document.location.href='/recommend';
+                  }
+                });
+            });
+        });
+</script>
 </html>

@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
 
 <div class="container-fluid main">
-	<div class="col-sm-9">
+	<div class="col-sm-11">
         	<?php if ($page <=0) { ?>
 			<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<?php } else { ?>
@@ -85,8 +85,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 
                                         <?php foreach ($item as $i=>$value):?>
-                                        	<?php if ($i%5 == 0) { ?><div class="clearfix"></div><?php } ?>
-                                            <div class="col-5 resent-grid recommended-grid slider-top-grids">
+                                        	<?php if ($i%6 == 0) { ?><div class="clearfix"></div><?php } ?>
+                                            <div class="col-sm-2 resent-grid recommended-grid slider-top-grids">
                                                     <div class="resent-grid-img recommended-grid-img bxslider">
                                                             <a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
                                                             <div class="time">
@@ -109,30 +109,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="pagination"> {{ $item->links() }} </div>
                                         </center>
 				</div>
-                                                        <div class="clearfix"> </div><br>
+                                                      <div class="clearfix"> </div><br>
                             <center>
                             <form method="POST" id="frecommend" action="/recommend">
 											{{ csrf_field() }}	
 											<input type="hidden" id="irecommend" name="irecommend" value=""/>
 										</form>
                                                                                 <button id="btn_recommend"> Recommend</button></center>
-
-
 			</div>
 	</div>
-  	<div class="col-sm-3">
+  	<div class="col-sm-1">
   		<?php foreach ($rate as $mov) { ?>
         <div class="single-right-grids">
-                <div class="col-md-4 single-right-grid-left">
+                <div class="single-right-grid-left">
                     <a href="/movies/<?= $mov->id;?>">
                         <img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
                     </a>
-                </div>
-                <div class="col-md-8 single-right-grid-right">
-                        <a href="/movies/<?= $mov->id;?>">
-                        <h4 class="media-title"><?= $mov->MovieName ?></h4>
-                        </a>
-                        <?=$mov->getRate($mov->id);?>
+		<small>	<?=$mov->getRate($mov->id);?> </small>
                 </div>
         </div>
         <?php } ?>
@@ -153,9 +146,6 @@ $(document).ready(function(){
   user = {{Auth::id()}};
   $('#btn_recommend').click(function(){
 		//alert('click');
-		$('#frecommend').submit(function(){
-						console.log("Submit success");
-		});
 		$.ajax({
 			url:'http://localhost:8002/queries.json',
 			type: 'POST',
@@ -165,11 +155,11 @@ $(document).ready(function(){
 			data : '{ "user":"'+user+'", "num": 500 }',
 			success: function(data){
                                 $('#irecommend').val(JSON.stringify(data));
-				console.log(JSON.stringify(data));
+				console.log("Data:",JSON.stringify(data));
                                 $('#frecommend').submit();		
 			},
 			error: function(err){
-				console.log("Cannot get data",err);		
+				alert("Error: Cannot get data",err);		
 			}	
 		});
 	})
