@@ -142,7 +142,7 @@ ul.nav.nav-sidebar li a{
     padding: .8em 0 .8em 3em;
 }
 .main-grids {
-  padding: 0;
+  padding: 0 0 1em 1em;
 }
 .sidebar ul.nav-sidebar li a:hover{
     background-color: #232323 !important;
@@ -2782,7 +2782,7 @@ background: url(../images/social.png) no-repeat 0px 0px;
 .slogan {
 	position: absolute;
 	left: 100px;
-	right: 320px;
+	right: 200px;
 	text-align: center;
 	padding: 5px 0;
 }
@@ -2800,31 +2800,29 @@ background: url(../images/social.png) no-repeat 0px 0px;
 
 
 .page-nav {
-	position: absolute;
-	display: block;
-	background-color: rgba(0,0,0,.2);
-	color: #fff;
-	border-radius: 6px;
-	padding: 30px 5px;
-	top: 33%;
+		position: absolute;
+		display: table;
+		font-size: 20px;
+		background-color: rgba(0,0,0,.3);
+		color: #ccc;
+		top: 40%;
+		padding: 10px;
+		border-radius: 22px;
+		z-index: 10000;
+	}
+	.page-nav:hover {
+		color: #fff;
+	}
+	.page-nav.disabled {
+		background-color: rgba(0,0,0,.1);
+	}
+	.page-prev {
+		left: 0;
+	}
+	.page-next {
+		right: 0;
+	}
 	
-}
-.page-nav:hover {
-	background-color: rgba(0,0,0,.5);
-	color: #fff;
-	padding: 30px 15px;
-	border-radius: 16px;
-}
-.page-nav.disabled {
-	background-color: transparent;
-	color: #ccc;
-}
-.page-prev {
-	left: 0;
-}
-.page-next {
-	right: 0;
-}
 .single-right-grids {
-	display: table;
-}
+		display: table;
+	}
