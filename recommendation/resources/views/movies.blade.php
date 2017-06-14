@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Recommend System</title>
+<title>All movies</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="My Play Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -62,13 +62,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</nav>
 	<!-- NAVBAR END -->
 	<!-- MAIN BEGIN -->
-	<div class="container-fluid main">
+	<div class="container-fluid main-wrapper">
 		<script>
 		</script>
 		
 		<div class="row">
 			<!-- LEFT BEGIN -->
-			<div class="col-lg-10">
+			<div class="main col-lg-10 col-md-9">
 				<?php if ($page <=0) { ?>
 				<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 				<?php } else { ?>
@@ -113,7 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<!-- LEFT END -->
+			<div class="main col-lg-2 col-md-3">
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">
