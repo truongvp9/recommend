@@ -47,15 +47,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </button>
             <a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
         </div>
-
         <div class="slogan" id="slogan">
         	<h2 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h2>
         	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
         </div>
-
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right top-search">
-                                
+                                <img id="help" src="images/13.png">
 				<form class="navbar-form navbar-right" action="/search" method="post">
                                         {{ csrf_field() }}
                                         <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
@@ -87,12 +85,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main-grids">
 				<div class="top-grids">
 					<div class="recommended-info">
-                                                                            
-                                            <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
-
+                                                <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
 						<h3>All Videos</h3>
-					</div>
-
+                                                <center>
+                                                <div class="pagination"> {{ $item->links() }} </div>
+                                                <form method="POST" id="frecommend" action="/recommend">
+                                                    {{ csrf_field() }}	
+                                                    <input type="hidden" id="irecommend" name="irecommend" value=""/>
+                                                </form>
+                                                <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý</a>
+                                                <button id="btn_recommend"> Recommend</button>
+                                                </center>
+                                        </div>
                                         <?php foreach ($item as $i=>$value):?>
                                         	<?php if ($i%6 == 0) { ?><div class="clearfix"></div><?php } ?>
                                             <div class="col-sm-2 resent-grid recommended-grid slider-top-grids">
@@ -114,18 +118,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                         <?php endforeach; ?>
                                         <div class="clearfix"> </div>
-                                        <center>
-                                        <div class="pagination"> {{ $item->links() }} </div>
-                                        </center>
+
 				</div>
                                                       <div class="clearfix"> </div><br>
-                            <center>
-                            <form method="POST" id="frecommend" action="/recommend">
-											{{ csrf_field() }}	
-											<input type="hidden" id="irecommend" name="irecommend" value=""/>
-										</form>
-                                <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi </a>
-                                                                                <button id="btn_recommend"> Recommend</button></center>
+
 			</div>
 	</div>
   	<div class="col-sm-1">
