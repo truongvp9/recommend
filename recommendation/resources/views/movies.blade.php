@@ -1,3 +1,4 @@
+@extends('help')
 @extends('layouts.app')
 
 <!--
