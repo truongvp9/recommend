@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>All movies</title>
+<title>All Videos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="My Play Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -53,8 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div id="navbar" class="navbar-collapse collapse">
 				<div class="navbar-right top-search">
 					<form class="navbar-form navbar-right" action="/search" method="post">
-						{{ csrf_field() }}	
-						<input type="text" class="form-control" placeholder="Search..." name="key">
+						{{ csrf_field() }}
+						<input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
 					</form>
 				</div>
@@ -69,7 +69,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		<div class="row">
 			<!-- LEFT BEGIN -->
-			<div class="main col-lg-10 col-md-9">
+			<div class="main col-lg-11 col-md-9">
+				<div class="clearfix text-center">
+					<form method="POST" id="frecommend" action="/recommend">
+						{{ csrf_field() }}	
+						<input type="hidden" id="irecommend" name="irecommend" value=""/>
+					</form>
+					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi " class="btn btn-default has-tooltip" id="btn_recommend"> Recommend</button>
+				</div>
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-4">
+							<h2 class="has-tooltip" title="Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">All Videos</h2>
+						</div>
+						<div class="col-sm-8 text-right">
+							<ul class="pagination">{{ $item->links() }}</ul>
+						</div>
+					</div>
+				</div>
 				<?php if ($page <=0) { ?>
 				<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
 				<?php } else { ?>
@@ -83,12 +100,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				<div class="main-grids">
 					<div class="clearfix top-grids">
-						<div class="recommended-info"><h3>All Videos</h3></div>
-						<div class="clearfix"></div>
-	
 						<?php foreach ($item as $i=>$value):?>
-						<div class="resent-grid recommended-grid slider-top-grids">
-							<div class="resent-grid-img recommended-grid-img bxslider">
+						<div class="resent-grid slider-top-grids">
+							<div class="resent-grid-img bxslider">
 								<a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
 								<div class="time"><p>3:04</p></div>
 								<div class="clck">
@@ -102,20 +116,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<?php endforeach; ?>
 					</div>
-					<div class="clearfix text-center">
-						<ul class="pagination">{{ $item->links() }}</ul>
-					</div>
-					<div class="clearfix text-center">
-						<form method="POST" id="frecommend" action="/recommend">
-							{{ csrf_field() }}	
-							<input type="hidden" id="irecommend" name="irecommend" value=""/>
-						</form>
-						<button class="btn btn-default" id="btn_recommend"> Recommend</button>
-					</div>
 				</div>
 			</div>
 			<!-- LEFT END -->
-			<div class="main col-lg-2 col-md-3">
+			<div class="main col-lg-1 col-md-3">
+				<h5 class="has-tooltip" title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ">HISTORY</h5>
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">

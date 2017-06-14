@@ -4,10 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
-
-html, body {
-	height: 100%;
-}
 body{
 	background:#fff;
 	font-size:100%;
@@ -25,7 +21,7 @@ a.navbar-brand {
 }
 nav.navbar.navbar-inverse.navbar-fixed-top {
     padding: 1.5em 0;
-    background: #fff;
+    background: #FFF;
     margin: 0;
     box-shadow: 0px 0 2px #C1C1C1 !important;
 }
@@ -146,7 +142,7 @@ ul.nav.nav-sidebar li a{
     padding: .8em 0 .8em 3em;
 }
 .main-grids {
-  padding: 0 0 1em 1em;
+  padding: 0;
 }
 .sidebar ul.nav-sidebar li a:hover{
     background-color: #232323 !important;
@@ -462,12 +458,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
 	margin:1em 0;
 }
 .resent-grid {
-	position: relative;
-  	min-height: 1px;
-  	padding-left: 5px;
-  	padding-right: 5px;
-  	width: 20%;
-  	float: left;
+	padding-left: 0.1em;
 }
 .resent-grid-img{
 	position:relative;
@@ -481,7 +472,6 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
 }
 .resent-grid a img{
 	width:100%;
-	height: auto;
 }
 .time{
   position: absolute;
@@ -561,17 +551,14 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
 	font-family: 'Oswald', sans-serif;
 }
 .resent-grid-info{
-	background: #f7f7f7;
-	padding: 0 5px 5px;
+    background: #f7f7f7;
+    padding: 1em;
 }
 .resent-grid-info a.title{
   margin: 0;
   font-size: 18px;
   font-weight: 600;
   color: #525254;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
 }
 .resent-grid-info a.title:hover{
     transition: inherit;
@@ -581,9 +568,6 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
   font-size: 14px;
   color: #9E9E9E;
   margin: .5em 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
 }
 .resent-grid-info p.author a.author{
     color: #21DEEF;
@@ -2780,13 +2764,27 @@ background: url(../images/social.png) no-repeat 0px 0px;
 		padding: .52em 1em .52em 3em;
 	}
 }
+
+
+
+
+
+.col-5 {
+	position: relative;
+  	min-height: 1px;
+  	padding-right: 15px;
+  	padding-left: 15px;
+  	width: 20%;
+  	float: left;
+}
+
+
 .slogan {
 	position: absolute;
-	top: 0;
 	left: 100px;
-	right: 300px;
+	right: 320px;
 	text-align: center;
-	padding: 12px 0;
+	padding: 5px 0;
 }
 .slogan .slogan-title {
 	display: block;
@@ -2795,7 +2793,7 @@ background: url(../images/social.png) no-repeat 0px 0px;
 	
 }
 
-.navbar-right.top-search input[type=text] {
+.header-top-right.top-search input[type=text] {
 	min-width: 280px;
 }
 
@@ -2829,17 +2827,4 @@ background: url(../images/social.png) no-repeat 0px 0px;
 }
 .single-right-grids {
 	display: table;
-}
-
-.main-wrapper,
-.main-wrapper > .row {
-	height: 100%;
-}
-.main-wrapper ::-webkit-scrollbar {
-	width: 0;
-	background-color: transparent;
-}
-.main-wrapper > .row > .main {
-	height: 100%;
-	overflow-y: scroll;
 }
