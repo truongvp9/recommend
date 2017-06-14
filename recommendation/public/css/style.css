@@ -4,6 +4,10 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
+html, body {
+	height: 100%;
+}
 body{
 	background:#fff;
 	font-size:100%;
@@ -2825,4 +2829,17 @@ background: url(../images/social.png) no-repeat 0px 0px;
 }
 .single-right-grids {
 	display: table;
+}
+
+.main-wrapper,
+.main-wrapper > .row {
+	height: 100%;
+}
+.main-wrapper ::-webkit-scrollbar {
+	width: 0;
+	background-color: transparent;
+}
+.main-wrapper > .row > .main {
+	height: 100%;
+	overflow-y: scroll;
 }
