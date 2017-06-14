@@ -11,7 +11,7 @@ html, body {
 body{
 	background:#fff;
 	font-size:100%;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body a {
   transition: 0.5s all;
