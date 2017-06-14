@@ -55,12 +55,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right top-search">
-                                
+                            
 				<form class="navbar-form navbar-right" action="/search" method="post">
                                         {{ csrf_field() }}
                                         <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
+                                        <img id="help" src="images/help.png" width="30">
                                         <input type="text" style="z-index:0" class="form-control" placeholder="Search..." name="key">
 					<input type="submit" value=" ">
+                                        
 				</form>
 			</div>
             

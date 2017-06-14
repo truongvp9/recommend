@@ -17,5 +17,9 @@ $(document).ready(function(){
         "width":500,
         "bg_color":"#F05F40"
     });
+    
+    $('#help').click(function(){
+
+    });
 });
 </script>
