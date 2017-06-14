@@ -120,7 +120,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- LEFT END -->
 			<div class="main col-lg-1 col-md-3">
-				<h5 class="has-tooltip" title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ">HISTORY</h5>
+				<h5 class="has-tooltip" title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ">History</h5>
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">
@@ -134,6 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
+	<!-- MAIN END -->
 </body>
 </html>
 <script language="javascript">
