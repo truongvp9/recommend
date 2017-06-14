@@ -81,18 +81,49 @@ public function index(Request $request, Movie $movie,Rate $rate){
         $data['next'] = $offset < $total;
         $uid = Auth::id();
         $result = $rate->where('user_id',$uid)->where('option',2)->get();
+        $history = $rate->where('user_id',$uid)->where('option',1)->get();
         $r = array();
+        $genres = array();
+	$blacklist = array();
+	foreach ($history as $value){
+		$m = Movie::find($value->video_id);
+		if ($value->rating > 3) {
+           		if ($m->Genre1 != NULL && array_key_exists($m->Genre1,$genres)) {
+               			$genres[$m->Genre1] ++;
+           		}
+           		else {
+               			$genres[$m->Genre1] = 1;
+           		}
+           		if ($m->Genre2 != NULL && array_key_exists($m->Genre2,$genres)) {
+               			$genres[$m->Genre2] ++;
+           		}
+           		else {
+               			$genres[$m->Genre2] = 1;
+           		}
+           		if ($m->Genre3 != NULL && array_key_exists($m->Genre3,$genres)) {
+               			$genres[$m->Genre3] ++;
+           		}
+           		else {
+               			$genres[$m->Genre3] = 1;
+           		}
+		}
+		else {
+			$blacklist [] = $value->video_id;
+		}
+	}
         foreach ($result as $value ) {
            $r[] = $value->video_id;
         }
+        arsort($genres);
+	$most_genre = key($genres);
         $i = array();
         foreach($list as $value){
             $i[] = $value->item;
         }
-        //print_r($);
+        //print_r($genres);
         //die();
         $data['rate'] = $movie->findMany($r);
-        $data['item'] = $movie->wherein('MovieLensId',$i)->paginate(12);
+        $data['item'] = $movie->wherein('MovieLensId',$i)->whereNotIn('MovieLensId',$blacklist)->where(function ($query) use ($most_genre){return $query->where('Genre1',$most_genre)->orWhere('Genre2',$most_genre)->orWhere('Genre3',$most_genre);})->paginate(12);
         return view('recommend',$data);
      }
 
