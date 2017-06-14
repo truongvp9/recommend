@@ -2869,8 +2869,11 @@ background: url(../images/social.png) no-repeat 0px 0px;
 	margin: 0;
 	
 }
-body .tooltip-inner {
-	background-color: #336699;
+.tooltip-inner {
+	background-color: #336699 !important;
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: #336699 !important;
 }
 @media (min-width: 768px) {
 	.slogan {
