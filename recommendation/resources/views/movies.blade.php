@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
+                                
 				<!-- LOGOUT BEGIN -->
 				<ul class="nav navbar-nav navbar-right">
 						@if (Auth::guest())
@@ -80,7 +81,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="navbar-right top-search">
 					<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}
-						<input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
+                                                <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
+						<img src="/images/13.png" id="help">
+                                                <input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
 					</form>
 				</div>
@@ -101,11 +104,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						{{ csrf_field() }}	
 						<input type="hidden" id="irecommend" name="irecommend" value=""/>
 					</form>
+                                        <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý</a>
 					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-default has-tooltip" id="btn_recommend"> Recommend</button>
 				</div>
 				<div class="page-header">
 					<div class="row">
-						<div class="col-sm-4">
+                				<div class="col-sm-4">
+                                                        <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
 							<h2 class="has-tooltip" title="Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">All Videos</h2>
 						</div>
 						<div class="col-sm-8 text-right">
@@ -146,7 +151,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- LEFT END -->
 			<div class="main col-lg-1 col-md-3">
-				<h5 class="has-tooltip" title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ">History</h5>
+                                <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
+				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">

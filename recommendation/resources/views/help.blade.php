@@ -1,7 +1,7 @@
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="js/infoBox.js"></script>
 <script laguage="javascript">
 $(document).ready(function(){
-	$('.has-tooltip').tooltip();
     $('.help').infoBox({
         "width":500,
         "bg_color":"#F05F40"
@@ -18,18 +18,13 @@ $(document).ready(function(){
         "width":500,
         "bg_color":"#F05F40"
     });
-<<<<<<< HEAD
+    //$('.help,.help1,.help2,.help3').hide();
     $('#help').click(function(){
         $('.helper').show();
         $('.helper').css('z-index',9999);
     });
-    $('.main-grids').click(function(){
+    $('#help').hover(function(){
         $('.helper').hide();
-=======
-    
-    $('#help').click(function(){
-
->>>>>>> master
     });
 });
 </script>
