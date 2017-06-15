@@ -27,6 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -48,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="slogan" id="slogan">
 				<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
 				<div><strong>Bước 2</strong></div>
-				<div>Đánh giá: Sau đây là danh sách các phim được giới thiệu dựa trên các phim lựa chọn ở Bước 1. Bạn hãy đánh giá các phim bạn đã xem</div>
+				<div>Sau đây là danh sách các phim được phần mềm giới thiệu dựa trên Bước 1. Mời bạn hãy đánh giá tiếp</div>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<!-- LOGOUT BEGIN -->
@@ -100,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main col-lg-11 col-md-9">
 				<div class="clearfix text-center">
                                         <a id="sampledata1" class="help1">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá</a>
-					<button class="btn btn-default" onclick="document.location.href='/result'">Result</button>
+					<button class="btn btn-success" onclick="document.location.href='/result'">Result</button>
 				</div>
 				<div class="page-header">
 					<div class="row">
@@ -148,6 +149,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main col-lg-1 col-md-3">
                                 <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
 				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
+				<a class='btn btn-danger' href='/deleteallhistory/2'>Clear History</a>
+				<br>
+				<br>
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">

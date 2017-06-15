@@ -33,6 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
 <script type="text/javascript" src="<?=$url;?>/js/modernizr.custom.min.js"></script>    
 <link href="<?=$url;?>/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="<?=$url;?>/js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -42,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		display: table;
 	}
 	#img-main {
-		width: 100%;
+		width: 70%;
 		height: auto;
 	}
 	.mov-img {
@@ -228,7 +229,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 .done(function( msg ) {
                         if (msg != 'fail' && option == 1) {
                                 $.ajax({
-                                        url:'http://localhost:8002/events.json?accessKey=9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O',
+                                        url:'http://localhost:8002/events.json?accessKey=VMdgKP6ujmoo4Ixp4htuVR_qK0_fJPnG986luvsfvvxfcJFQyLv9PMVQalzZML9n',
                                         type: 'POST',
                                         dataType: 'json',
                                         contentType: 'application/json',

@@ -27,6 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Spectral" rel="stylesheet">
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -46,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
 			</div>
 			<div class="slogan" id="slogan">
-				<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
+				<h3 class="slogan-title" >CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
 				<div><strong>Bước 1</strong></div>
 				<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
 			</div>
@@ -105,7 +106,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="hidden" id="irecommend" name="irecommend" value=""/>
 					</form>
                                         <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý</a>
-					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-default has-tooltip" id="btn_recommend"> Recommend</button>
+					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-success has-tooltip" id="btn_recommend"> Recommend</button>
+					
 				</div>
 				<div class="page-header">
 					<div class="row">
@@ -153,6 +155,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main col-lg-1 col-md-3">
                                 <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
 				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
+				<a class='btn btn-danger' href='/deleteallhistory/1'>Clear History</a>
+				<br>
+				<br>
 				<?php foreach ($rate as $mov) { ?>
 				<div class="single-right-grids">
 					<div class="single-right-grid-left">
@@ -182,7 +187,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			contentType: 'application/json',
 			processData : false,
-			data : '{ "user":"'+user+'", "num": 500 }',
+			data : '{ "user":"'+user+'", "num": 500, "ratingFlag": 0 }',
 			success: function(data){
                                 $('#irecommend').val(JSON.stringify(data));
 				console.log("Data:",JSON.stringify(data));
