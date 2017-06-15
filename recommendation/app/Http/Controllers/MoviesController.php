@@ -56,14 +56,20 @@ public function index(Request $request, Movie $movie,Rate $rate){
         foreach ($rates as $value ) {
            $r[] = $value->video_id;
         }
-        $data['movie'] = $movie->findMany($r);
+        //$data['movie'] = $movie->findMany($r);
         $recommend = $request->session()->get('recommend');
         $list = $recommend['itemScores'];
 	foreach ($movie->findMany($r) as $item ){
 		foreach ($list as $value) {
-			
+			//print_r($value->item);
+			//print_r(" ");
+			if($value->item == $item->MovieLensId){
+				$movie->where('MovieLensId',$value->item)->update(['AverageRating'=>$value->rating]);
+				//print_r($value->rating);
+			}		
 		}
 	}
+	$data['movie'] = $movie->findMany($r);
         return view('table',$data);
      }
 

@@ -24,6 +24,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
 <script src="/js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
@@ -48,8 +50,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="slogan" id="slogan">
 				<h3 class="slogan-title" >CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
-				<div><strong>Bước 1</strong></div>
-				<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+			
+				<h4>Bước 1</h4>
+				<h4>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</h4>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
                                 
@@ -60,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{ route('register') }}">Register</a></li>
 					@else
 						<li class="dropdown">
-							<ul class="dropdown-menu" id="logout-menu" role="menu">
+							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> {{ Auth::user()->name }}
+  <span class="caret"></span></button>
+							<ul class="dropdown-menu" id="logout-menu" role="menu" aria-labelledby="menu1">
 								<li>
 									<a href="{{ route('logout') }}"
 									    onclick="event.preventDefault();
@@ -72,18 +77,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</form>
 								</li>
 							</ul>
-							<a onclick="document.getElementById('logout-menu').style.display='block';" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							    {{ Auth::user()->name }} <span class="caret"></span>
-							</a>
 						</li>
 					@endif
 				</ul>
 				<!-- LOGOUT END -->
+				<img src="/images/13.png" id="help" class="helper-icon">
 				<div class="navbar-right top-search">
+					
 					<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}
                                                 <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
-						<img src="/images/13.png" id="help" class="helper">
                                                 <input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
 					</form>
@@ -120,16 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-				<?php if ($page <=0) { ?>
-				<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-				<?php } else { ?>
-				<a href="index.php?page=<?= $page-1 ?>" class="page-nav page-prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-				<?php } ?>
-				<?php if ($next) { ?>
-				<a href="index.php?page=<?= $page+1 ?>" class="page-nav page-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-				<?php } else { ?>
-				<a href="javascript:;" class="page-nav page-next disabled"><span class="glyphicon glyphicon-chevron-next"></span></a>
-				<?php } ?>
+		
 				
 				<div class="main-grids">
 					<div class="clearfix top-grids">

@@ -31,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- //fonts -->
 </head>
 <body>
@@ -48,8 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="slogan" id="slogan">
 				<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
-				<div><strong>Bước 2</strong></div>
-				<div>Sau đây là danh sách các phim được phần mềm giới thiệu dựa trên Bước 1. Mời bạn hãy đánh giá tiếp</div>
+				<h4>Bước 2</h4>
+				<h4>Sau đây là danh sách các phim được phần mềm giới thiệu dựa trên Bước 1. Mời bạn hãy đánh giá tiếp</h4>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<!-- LOGOUT BEGIN -->
@@ -59,7 +60,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{ route('register') }}">Register</a></li>
 					@else
 						<li class="dropdown">
-							<ul class="dropdown-menu" id="logout-menu" role="menu">
+							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> {{ Auth::user()->name }}
+  <span class="caret"></span></button>
+							<ul class="dropdown-menu" id="logout-menu" role="menu" aria-labelledby="menu1">
 								<li>
 									<a href="{{ route('logout') }}"
 									    onclick="event.preventDefault();
@@ -71,17 +74,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</form>
 								</li>
 							</ul>
-							<a onclick="document.getElementById('logout-menu').style.display='block';" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							    {{ Auth::user()->name }} <span class="caret"></span>
-							</a>
 						</li>
 					@endif
 				</ul>
 				<!-- LOGOUT END -->
+				<img src="/images/13.png" id="help" class="helper-icon">
 				<div class="navbar-right top-search">
 					<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}
-                                                <img src="/images/13.png" id="help" class="helper">
+                                                
                                                 <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
 						<input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
@@ -100,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- LEFT BEGIN -->
 			<div class="main col-lg-11 col-md-9">
 				<div class="clearfix text-center">
-                                        <a id="sampledata1" class="help1">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá</a>
+                                        <a id="sampledata1" class="help1">Click vào nút này để hiển thị kết quả dự đoán</a>
 					<button class="btn btn-success" onclick="document.location.href='/result'">Result</button>
 				</div>
 				<div class="page-header">
@@ -114,16 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-				<?php if ($page <=0) { ?>
-				<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
-				<?php } else { ?>
-				<a href="index.php?page=<?= $page-1 ?>" class="page-nav page-prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-				<?php } ?>
-				<?php if ($next) { ?>
-				<a href="index.php?page=<?= $page+1 ?>" class="page-nav page-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-				<?php } else { ?>
-				<a href="javascript:;" class="page-nav page-next disabled"><span class="glyphicon glyphicon-chevron-next"></span></a>
-				<?php } ?>
+		
 				
 				<div class="main-grids">
 					<div class="clearfix top-grids">

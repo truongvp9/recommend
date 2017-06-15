@@ -8,6 +8,8 @@ use App\Rate;
 
 class Movie extends Model
 {
+
+    public $timestamps = false;
     public function getCategory($video_id) {
         $movie = Movie::find($video_id);
         if ($movie) {

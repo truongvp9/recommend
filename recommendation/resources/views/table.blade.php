@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -47,14 +48,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="slogan" id="slogan">
         	<h2 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h2>
-        	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+          <h4> Kết quả đánh giá </h4>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right top-search">
 				<form class="navbar-form navbar-right" action="/search" method="post">
                                         {{ csrf_field() }}	
                                         <input type="text" class="form-control" placeholder="Search..." name="key">
-					<input type="submit" value=" ">
+					<input type="submit" value=" " id="searchicon">
 				</form>
 			</div>
         </div>
@@ -67,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="container-fluid main">
 	<div class="col-sm-9">
-		<h2>Kết quả đánh giá</h2>
+
 		<!-- TABLE BEGIN -->
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover">
@@ -83,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<tr>
 						<td><?=$item->MovieName;?></td>
 						<td><?=$item->getRate($item->id);?></td>
-						<td><?=$item->AverageRating; ?></td>
+						<td style="font-family: arial"><?=$item->AverageRating; ?></td>
 					</tr>
 					<?php } ?>
 				</tbody>
