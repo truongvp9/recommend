@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php"><h1><img width="50" src="<?=$url;?>/images/vp9.jpg" alt="" /></h1></a>
+				<a class="navbar-brand" href="<?=$url;?>/index.php"><h1><img width="50" src="<?=$url;?>/images/vp9.jpg" alt="" /></h1></a>
 			</div>
 			<div class="slogan" id="slogan">
         		<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
