@@ -111,7 +111,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="clearfix"> </div>
                            			</div>
 			<center>
-				<button onclick="document.location.href='/result'">Result</button>
+				<button class='btn btn-success' onclick="document.location.href='/result'">Result</button>
+                                <a href="/deleteallhistory" class="btn btn-danger">Delete All History</a>
 			</center>
 	</div>
   	<div class="col-sm-1">

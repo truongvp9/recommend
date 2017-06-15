@@ -119,6 +119,22 @@ public function index(Request $request, Movie $movie,Rate $rate){
         $id = $_POST['id'];
         $rating = $_POST['rate'];
         $option = $request->session()->get('option');
+        //Update
+        $update = $rate->where('user_id','=',$uid)->where('video_id','=',$id)->get();
+        //echo $update;
+        if(count($update) != 0)
+        {
+            //print_r (gettype($update));
+            //echo $update;
+            //echo $update->rating;
+            //$update->rating = $rating;
+            //$update->save();
+            $rate->where('user_id','=',$uid)->where('video_id','=',$id)->update(array('rating' =>$rating));
+            echo "Update " .$r[$rating];
+            return;
+        }
+        // var_dump($update);
+        // die();
         if ((intval($id)>0) && (intval($option)>0) ) {
             $rate->video_id = $id;
             $rate->user_id = $uid;
@@ -182,7 +198,9 @@ public function index(Request $request, Movie $movie,Rate $rate){
         echo 'update';
      }
 
-     public function destroy($id){
+     public function destroy(Rate $rate){
+        $rate->truncate();
         echo 'destroy';
+        return redirect()->route('recommend');
      }
 }

@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											{{ csrf_field() }}	
 											<input type="hidden" id="irecommend" name="irecommend" value=""/>
 										</form>
-                                                                                <button id="btn_recommend"> Recommend</button></center>
+                                                                                <button id="btn_recommend" class='btn btn-success'> Recommend</button></center>
 			</div>
 	</div>
   	<div class="col-sm-1">

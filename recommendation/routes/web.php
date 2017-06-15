@@ -24,7 +24,7 @@ Route::get('/result', [
 Route::any('/recommend', [
     'middleware' => 'auth',
     'uses' => 'MoviesController@recommend'
-]);
+])->name('recommend');;
 
 Route::get('/movies/{id}', [
     'middleware' => 'auth',
@@ -40,6 +40,11 @@ Route::any('/search', [
     'middleware' => 'auth',
     'uses' => 'MoviesController@search'
 ]);
+
+Route::any('/deleteallhistory',[
+    'middleware' => 'auth',
+    'uses' => 'MoviesController@destroy'
+])->name('deleteallhistory');
 
 Auth::routes();
 
