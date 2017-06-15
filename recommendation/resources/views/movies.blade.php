@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button><img id="help1" src="images/13.png">
             <a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
         </div>
         <div class="slogan" id="slogan">
@@ -52,14 +52,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            
 			<div class="header-top-right top-search">
-                                <img id="help" src="images/13.png">
+                                
 				<form class="navbar-form navbar-right" action="/search" method="post">
                                         {{ csrf_field() }}
                                         <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
                                         <input type="text" style="z-index:0" class="form-control" placeholder="Search..." name="key">
-					<input type="submit" value=" ">
-				</form>
+                                        <input type="submit" value=" ">
+                                        
+				</form><button id="help">help</button>
 			</div>
             
         </div>

@@ -18,8 +18,10 @@ $(document).ready(function(){
         "bg_color":"#F05F40"
     });
     $('#help').click(function(){
-        //alert('aaa');
-        $('.help').show();
+        $('.helper').show();
+    });
+    $('#help').hover(function(){
+        $('.helper').hide();
     });
 });
 </script>
