@@ -50,7 +50,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -59,7 +58,6 @@
                                 <a onclick="document.getElementById('logout-menu').style.display='block';" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                             </li>
                         @endif
                     </ul>
