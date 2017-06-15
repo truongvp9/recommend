@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button><img id="help1" src="images/13.png">
+          </button><button id="help">help</button>
             <a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
         </div>
         <div class="slogan" id="slogan">
@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <input type="text" style="z-index:0" class="form-control" placeholder="Search..." name="key">
                                         <input type="submit" value=" ">
                                         
-				</form><button id="help">help</button>
+				</form>
 			</div>
             
         </div>

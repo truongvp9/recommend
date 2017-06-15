@@ -19,6 +19,7 @@ $(document).ready(function(){
     });
     $('#help').click(function(){
         $('.helper').show();
+        $('.helper').css('z-index',9999);
     });
     $('#help').hover(function(){
         $('.helper').hide();
