@@ -1,3 +1,4 @@
+@extends('help')
 @extends('layouts.app')
 <!--
 Author: W3layouts
@@ -50,35 +51,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </style>
 </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="<?=$url;?>/index.php"><h1><img width="50" src="<?=$url;?>/images/vp9.jpg" alt="" /></h1></a>
-        </div>
-          
-        <div class="slogan" id="slogan">
-        	<h2 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h2>
-        	<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-			<div class="header-top-right top-search">
-				<form class="navbar-form navbar-right" action="/search" method="post">
-                                        {{ csrf_field() }}	
-                                        <input type="text" class="form-control" placeholder="Search..." name="key">
-					<input type="submit" value=" ">
-				</form>
-			</div>  
-        </div>
-		<div class="clearfix"> </div>
-      </div>
-    </nav>
+<body>
+	<!-- HAVBAR BEGIN -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="<?=$url;?>/index.php"><h1><img width="50" src="<?=$url;?>/images/vp9.jpg" alt="" /></h1></a>
+			</div>
+			<div class="slogan" id="slogan">
+        		<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
+        		<div><strong>Bước 3</strong></div>
+        		<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+        	</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<!-- LOGOUT BEGIN -->
+				<ul class="nav navbar-nav navbar-right">
+						@if (Auth::guest())
+						<li><a href="{{ route('login') }}">Login</a></li>
+						<li><a href="{{ route('register') }}">Register</a></li>
+					@else
+						<li class="dropdown">
+							<ul class="dropdown-menu" id="logout-menu" role="menu">
+								<li>
+									<a href="{{ route('logout') }}"
+									    onclick="event.preventDefault();
+									             document.getElementById('logout-form').submit();">
+									    Logout
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									    {{ csrf_field() }}
+									</form>
+								</li>
+							</ul>
+							<a onclick="document.getElementById('logout-menu').style.display='block';" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							    {{ Auth::user()->name }} <span class="caret"></span>
+							</a>
+						</li>
+					@endif
+				</ul>
+				<!-- LOGOUT END -->
+				<div class="navbar-right top-search">
+					<form class="navbar-form navbar-right" action="/search" method="post">
+						{{ csrf_field() }}
+						<input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
+						<input type="submit" value=" ">
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- NAVBAR END -->
 		<!-- MAIN SECTION -->
 		<div class="container-fluid main">
 			<div class="col-sm-9">
