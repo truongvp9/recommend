@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						{{ csrf_field() }}	
 						<input type="hidden" id="irecommend" name="irecommend" value=""/>
 					</form>
-					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi " class="btn btn-default has-tooltip" id="btn_recommend"> Recommend</button>
+					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-default has-tooltip" id="btn_recommend"> Recommend</button>
 				</div>
 				<div class="page-header">
 					<div class="row">
