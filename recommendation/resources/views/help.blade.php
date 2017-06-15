@@ -21,7 +21,7 @@ $(document).ready(function(){
         $('.helper').show();
         $('.helper').css('z-index',9999);
     });
-    $('#help').hover(function(){
+    $('.main-grids').click(function(){
         $('.helper').hide();
     });
 });
