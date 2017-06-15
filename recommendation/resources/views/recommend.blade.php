@@ -51,6 +51,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div>Buoc 2: Danh gia: Sau day la danh sach cac phim duoc gioi thieu dua tren cac phim lua chon o Buoc 1. Ban hay danh gia cac phim ban da xem</div>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
+				<!-- LOGOUT BEGIN -->
+				<ul class="nav navbar-nav navbar-right">
+						@if (Auth::guest())
+						<li><a href="{{ route('login') }}">Login</a></li>
+						<li><a href="{{ route('register') }}">Register</a></li>
+					@else
+						<li class="dropdown">
+							<ul class="dropdown-menu" id="logout-menu" role="menu">
+								<li>
+									<a href="{{ route('logout') }}"
+									    onclick="event.preventDefault();
+									             document.getElementById('logout-form').submit();">
+									    Logout
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									    {{ csrf_field() }}
+									</form>
+								</li>
+							</ul>
+							<a onclick="document.getElementById('logout-menu').style.display='block';" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							    {{ Auth::user()->name }} <span class="caret"></span>
+							</a>
+						</li>
+					@endif
+				</ul>
+				<!-- LOGOUT END -->
 				<div class="navbar-right top-search">
 					<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}

@@ -3,7 +3,7 @@
 
 <!--
 Author: W3layouts
-Author URL: http://w3layouts.com
+Author URL: http://w3layouts.coms
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
