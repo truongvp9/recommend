@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('content')
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -55,33 +55,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="index.php"><h1><img width="50" src="images/vp9.jpg" alt="" /></h1></a>
-        </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-			<div class="top-search">
-				<form class="navbar-form navbar-right" action="/search" method="post">
-                                        {{ csrf_field() }}	
-                                        <input type="text" class="form-control" placeholder="Search..." name="key">
-					<input type="submit" value=" ">
-				</form>
-			</div>
-        </div>
-        
-        <div class="clearfix"> </div>
-      </div>
-    </nav>
-	
-        
         <div class="col-sm-12 main">
         	<?php if ($page <=0) { ?>
 			<a href="javascript:;" class="page-nav page-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -145,3 +118,4 @@ $(document).ready(function(){
   $('.bxslider').bxSlider();
 });
 </script>
+@endsection
