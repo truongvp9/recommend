@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}
                                                 <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
-						<img src="/images/13.png" id="help">
+						<img src="/images/13.png" id="help" class="helper">
                                                 <input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
 					</form>
