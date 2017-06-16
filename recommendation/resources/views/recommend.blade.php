@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h2 class="has-tooltip" title="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">Recommended Movies</h2>
 						</div>
 						<div class="col-sm-4 clearfix text-center" >                 
-							<button data-step="3" data-intro="Click vào nút này để hiển thị kết quả dự đoán" class="btn btn-success" onclick="document.location.href='/result'">Result</button>
+							<button data-step="3" data-intro="Click vào nút này để hiển thị kết quả dự đoán" class="btn btn-success" id="btn_result" onclick="document.location.href='/result'">Result</button>
 						</div>
 						<div class="col-sm-4 text-right">
 							<ul class="pagination">{{ $item->links() }}</ul>
@@ -152,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="/movies/<?= $mov->id;?>">
 								<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
 							</a>
-							<small style="color:yellow">	<?=$mov->getRate($mov->id);?> </small>
+							<small class="stars">	<?=$mov->getRate($mov->id);?> </small>
 						</div>
 					</div>
 					<?php } ?>
@@ -166,6 +166,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script language="javascript">
 $(document).ready(function(){
 	//introJs().start();
+	if({{count($rate)}}<3){
+		$('#btn_result').prop('disabled', true);
+	}
   //$('.bxslider').bxSlider();
 });
 </script>

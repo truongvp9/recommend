@@ -33,6 +33,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 #menu1{
 	margin: 5px;
 }
+.stars span {
+	color: yellow;
+}
 .sidebar {
     top: 80px;
     background: #272c2e;

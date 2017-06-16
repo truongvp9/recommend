@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- NAVBAR END -->
 		<!-- MAIN SECTION -->
 		<div class="container-fluid main">
-			<div class="col-sm-9">
+			<div class="col-sm-7 col-sm-offset-2">
 				<div class="page-header">
 					<h2><?= html_entity_decode($movie->MovieName) ?></h2>
 				</div>
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="col-md-8 single-right-grid-right">
                                             <a href="/movies/<?= $mov->id;?>">
                                             <h4 class="media-title"><?= $mov->MovieName ?></h4>
-                                            <?=$mov->getRate($mov->id);?>
+                                            <div class="stars"> <?=$mov->getRate($mov->id);?> </div>
                                             </a>
                                     </div>
                             </div>
@@ -238,7 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 console.log(JSON.stringify(data));		
                                         },
                                         error: function(){
-                                                console.log("Cannot get data");		
+                                                alert("Cannot send data");		
                                         }	
                                 });
                         }

@@ -161,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="/movies/<?= $mov->id;?>">
 								<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
 							</a>
-							<small style="color:yellow">	<?=$mov->getRate($mov->id);?> </small>
+							<small class="stars">	<?=$mov->getRate($mov->id);?> </small>
 						</div>
 					</div>
 					<?php } ?>
