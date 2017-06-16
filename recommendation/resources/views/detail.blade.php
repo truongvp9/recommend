@@ -67,8 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="slogan" id="slogan">
         		<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
-        		<div><strong>Bước 3</strong></div>
-        		<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+        		<h4>Hãy đánh giá phim bên dưới</h4>
         	</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<!-- LOGOUT BEGIN -->
@@ -229,7 +228,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 .done(function( msg ) {
                         if (msg != 'fail' && option == 1) {
                                 $.ajax({
-                                        url:'http://localhost:8002/events.json?accessKey=VMdgKP6ujmoo4Ixp4htuVR_qK0_fJPnG986luvsfvvxfcJFQyLv9PMVQalzZML9n',
+                                        url:'http://10.12.11.161:8002/events.json?accessKey=VMdgKP6ujmoo4Ixp4htuVR_qK0_fJPnG986luvsfvvxfcJFQyLv9PMVQalzZML9n',
                                         type: 'POST',
                                         dataType: 'json',
                                         contentType: 'application/json',
@@ -243,12 +242,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         }	
                                 });
                         }
-                  alert( "Rating " + msg );
+                  //alert( "Rating " + msg );
                   if (option == 1) {
-                          document.location.href='/index.php';
+                          document.location.href='/index.php?page='+msg;
                   }
                   else {
-                  	document.location.href='/recommend';
+                  	document.location.href='/recommend?page='+msg;
                   }
                 });
             });

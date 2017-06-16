@@ -70,8 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="slogan" id="slogan">
 				<h3 class="slogan-title">CHƯƠNG TRÌNH GIỚI THIỆU PHIM TỰ ĐỘNG</h3>
-				<div><strong>Bước 1</strong></div>
-				<div>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</div>
+				<h4>Bước 1</h4>
+				<h4>Hãy đánh giá các phim bạn đã xem bên dưới (càng nhiều càng tốt)</h4>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<!-- LOGOUT BEGIN -->

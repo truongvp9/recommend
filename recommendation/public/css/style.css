@@ -30,6 +30,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
     margin: 0;
     box-shadow: 0px 0 2px #C1C1C1 !important;
 }
+#menu1{
+	margin: 5px;
+}
 .sidebar {
     top: 80px;
     background: #272c2e;
@@ -67,7 +70,7 @@ form.navbar-form.navbar-right {
     border: none !important;
     position: absolute !important;
     outline: none !important;
-    top: 50%;
+    top: 20%;
     right: 26px;
 }
 .header-top-right {

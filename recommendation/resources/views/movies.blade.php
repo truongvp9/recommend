@@ -30,9 +30,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Spectral" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.5.0/introjs.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.5.0/intro.min.js" type="text/javascript"></script>
 <!-- //fonts -->
 </head>
   <body>
@@ -58,13 +60,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 
 				<!-- LOGOUT BEGIN -->
 				<ul class="nav navbar-nav navbar-right">
-						@if (Auth::guest())
+					@if (Auth::guest())
 						<li><a href="{{ route('login') }}">Login</a></li>
 						<li><a href="{{ route('register') }}">Register</a></li>
 					@else
 						<li class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> {{ Auth::user()->name }}
-  <span class="caret"></span></button>
+  							<span class="caret"></span></button>
 							<ul class="dropdown-menu" id="logout-menu" role="menu" aria-labelledby="menu1">
 								<li>
 									<a href="{{ route('logout') }}"
@@ -83,11 +85,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- LOGOUT END -->
 				<img src="/images/13.png" id="help" class="helper-icon">
 				<div class="navbar-right top-search">
-					
-					<form class="navbar-form navbar-right" action="/search" method="post">
+					<form class="navbar-form navbar-right" data-intro="Tìm kiếm phim tại đây" data-step="1" action="/search" method="post">
 						{{ csrf_field() }}
-                                                <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
-                                                <input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
+                                                <!--<a id="sampledata" class="help">Tìm kiếm phim tại đây</a>-->
+                                                <input type="text" class="form-control" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
 					</form>
 				</div>
@@ -103,32 +104,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="row">
 			<!-- LEFT BEGIN -->
 			<div class="main col-lg-11 col-md-9">
-				<div class="clearfix text-center">
-					<form method="POST" id="frecommend" action="/recommend">
-						{{ csrf_field() }}	
-						<input type="hidden" id="irecommend" name="irecommend" value=""/>
-					</form>
-                                        <a id="sampledata1" class="help1">Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý</a>
-					<button title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-success has-tooltip" id="btn_recommend"> Recommend</button>
-					
-				</div>
+				
 				<div class="page-header">
 					<div class="row">
-                				<div class="col-sm-4">
-                                                        <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
-							<h2 class="has-tooltip" title="Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">All Videos</h2>
+                		<div class="col-sm-4" data-intro="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá" data-step="2">
+							<h2 class="has-tooltip" title="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">All Movies</h2>
 						</div>
-						<div class="col-sm-8 text-right">
+						<div class="col-sm-4 clearfix text-center">
+							<form method="POST" id="frecommend" action="/recommend">
+								{{ csrf_field() }}	
+								<input type="hidden" id="irecommend" name="irecommend" value=""/>
+							</form>
+						
+							<button target="_blank" data-intro="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" data-step="4" title="Sau khi chọn khoảng 5 phim hãy click vào nút Recommend để nhận gợi ý" class="btn btn-success has-tooltip" id="btn_recommend"> Recommend</button>
+						
+						
+						</div>
+						<div class="col-sm-4 text-right">
 							<ul class="pagination">{{ $item->links() }}</ul>
 						</div>
 					</div>
+					
 				</div>
 		
 				
 				<div class="main-grids">
-					<div class="clearfix top-grids">
+					<div class="clearfix top-grids"  >
 						<?php foreach ($item as $i=>$value):?>
-						<div class="resent-grid slider-top-grids">
+						<div class="resent-grid slider-top-grids" style="height: 50vh;">
 							<div class="resent-grid-img bxslider">
 								<a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
 								<div class="time"><p>3:04</p></div>
@@ -147,21 +150,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- LEFT END -->
 			<div class="main col-lg-1 col-md-3">
-                                <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
 				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
 				<a class='btn btn-danger' href='/deleteallhistory/1'>Clear History</a>
 				<br>
 				<br>
-				<?php foreach ($rate as $mov) { ?>
-				<div class="single-right-grids">
-					<div class="single-right-grid-left">
-						<a href="/movies/<?= $mov->id;?>">
-							<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
-						</a>
-						<small>	<?=$mov->getRate($mov->id);?> </small>
+				<div data-intro="Đây là danh sách các phim bạn đã đánh giá" data-position="left" data-step="3">
+					<?php foreach ($rate as $mov) { ?>
+					<div class="single-right-grids">
+						<div class="single-right-grid-left">
+							<a href="/movies/<?= $mov->id;?>">
+								<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
+							</a>
+							<small style="color:yellow">	<?=$mov->getRate($mov->id);?> </small>
+						</div>
 					</div>
+					<?php } ?>
 				</div>
-				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -170,27 +174,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script language="javascript">
 $(document).ready(function(){
-  //$('.bxslider').bxSlider();
-  console.log({{Auth::id()}});
-  user = {{Auth::id()}};
-  $('#btn_recommend').click(function(){
-		//alert('click');
-		$.ajax({
-			url:'http://localhost:8002/queries.json',
-			type: 'POST',
-			dataType: 'json',
-			contentType: 'application/json',
-			processData : false,
-			data : '{ "user":"'+user+'", "num": 500, "ratingFlag": 0 }',
-			success: function(data){
-                                $('#irecommend').val(JSON.stringify(data));
-				console.log("Data:",JSON.stringify(data));
-                                $('#frecommend').submit();		
-			},
-			error: function(err){
-				alert("Error: Cannot get data",err);		
-			}	
-		});
-	})
+  	//$('.bxslider').bxSlider();
+	if({{count($rate)}}<5){
+		$('#btn_recommend').prop('disabled', true);
+	}
+	//introJs().start();
+	$("#help").click(function(){
+		introJs().start();
+	});
+	console.log({{Auth::id()}});
+	user = {{Auth::id()}};
+	$('#btn_recommend').click(function(){
+			//alert('click');
+			$.ajax({
+				url:'http://10.12.11.161:8002/queries.json',
+				type: 'POST',
+				dataType: 'json',
+				contentType: 'application/json',
+				processData : false,
+				data : '{ "user":"'+user+'", "num": 500, "ratingFlag": 0 }',
+				success: function(data){
+									$('#irecommend').val(JSON.stringify(data));
+					console.log("Data:",JSON.stringify(data));
+									$('#frecommend').submit();		
+				},
+				error: function(err){
+					alert("Error: Cannot get data",err);		
+				}	
+			});
+		})
 });
 </script>

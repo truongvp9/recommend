@@ -27,11 +27,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.5.0/introjs.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
 <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.5.0/intro.min.js" type="text/javascript"></script>
+
 <!-- //fonts -->
 </head>
 <body>
@@ -78,15 +81,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					@endif
 				</ul>
 				<!-- LOGOUT END -->
-				<img src="/images/13.png" id="help" class="helper-icon">
+				<img src="/images/13.png" id="help" class="helper-icon" onclick='javascript:introJs().start();'>
 				<div class="navbar-right top-search">
-					<form class="navbar-form navbar-right" action="/search" method="post">
+					<!--<form class="navbar-form navbar-right" action="/search" method="post">
 						{{ csrf_field() }}
-                                                
-                                                <a id="sampledata" class="help">Tìm kiếm phim tại đây</a>
+                        
 						<input type="text" class="form-control has-tooltip" title="Tìm kiếm phim tại đây	" placeholder="Search..." name="key">
 						<input type="submit" value=" ">
-					</form>
+					</form>-->
 				</div>
 			</div>
 		</div>
@@ -100,17 +102,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="row">
 			<!-- LEFT BEGIN -->
 			<div class="main col-lg-11 col-md-9">
-				<div class="clearfix text-center">
-                                        <a id="sampledata1" class="help1">Click vào nút này để hiển thị kết quả dự đoán</a>
-					<button class="btn btn-success" onclick="document.location.href='/result'">Result</button>
-				</div>
 				<div class="page-header">
 					<div class="row">
-						<div class="col-sm-4">
-                                                        <a id="sampledata2" class="help2">Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá </a>
-							<h2 class="has-tooltip" title="Đây là danh sách videos, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">Recommended Videos</h2>
+						<div class="col-sm-4" data-step="1" data-intro="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá">
+                                                        
+							<h2 class="has-tooltip" title="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">Recommended Movies</h2>
 						</div>
-						<div class="col-sm-8 text-right">
+						<div class="col-sm-4 clearfix text-center" >                 
+							<button data-step="3" data-intro="Click vào nút này để hiển thị kết quả dự đoán" class="btn btn-success" onclick="document.location.href='/result'">Result</button>
+						</div>
+						<div class="col-sm-4 text-right">
 							<ul class="pagination">{{ $item->links() }}</ul>
 						</div>
 					</div>
@@ -139,21 +140,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- LEFT END -->
 			<div class="main col-lg-1 col-md-3">
-                                <a id="sampledata3" class="help3">Đây là danh sách các phim bạn đã đánh giá </a>
+                                
 				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
 				<a class='btn btn-danger' href='/deleteallhistory/2'>Clear History</a>
 				<br>
 				<br>
-				<?php foreach ($rate as $mov) { ?>
-				<div class="single-right-grids">
-					<div class="single-right-grid-left">
-						<a href="/movies/<?= $mov->id;?>">
-							<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
-						</a>
-						<small>	<?=$mov->getRate($mov->id);?> </small>
+				<div data-step="2" data-position="left" data-intro="Đây là danh sách các phim bạn đã đánh giá">
+					<?php foreach ($rate as $mov) { ?>
+					<div class="single-right-grids">
+						<div class="single-right-grid-left">
+							<a href="/movies/<?= $mov->id;?>">
+								<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
+							</a>
+							<small style="color:yellow">	<?=$mov->getRate($mov->id);?> </small>
+						</div>
 					</div>
+					<?php } ?>
 				</div>
-				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -162,6 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script language="javascript">
 $(document).ready(function(){
+	//introJs().start();
   //$('.bxslider').bxSlider();
 });
 </script>

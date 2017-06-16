@@ -20,7 +20,7 @@ class MoviesController extends Controller
 {
 
 public function index(Request $request, Movie $movie,Rate $rate){
-        $movies = $movie->where('id','>',200)->paginate(12);
+        $movies = $movie->where('id','>',50)->paginate(12);
         $request->session()->put('option', '1');
 	    // print_r($movies);
 	    // die();
@@ -44,6 +44,8 @@ public function index(Request $request, Movie $movie,Rate $rate){
            $r[] = $value->video_id;
         }
         $data['rate'] = $movie->findMany($r);
+
+        $request->session()->put('pageSession', $page);
         return view('movies',$data);
      }
 
@@ -59,17 +61,18 @@ public function index(Request $request, Movie $movie,Rate $rate){
         //$data['movie'] = $movie->findMany($r);
         $recommend = $request->session()->get('recommend');
         $list = $recommend['itemScores'];
-	foreach ($movie->findMany($r) as $item ){
-		foreach ($list as $value) {
-			//print_r($value->item);
-			//print_r(" ");
-			if($value->item == $item->MovieLensId){
-				$movie->where('MovieLensId',$value->item)->update(['AverageRating'=>$value->rating]);
-				//print_r($value->rating);
-			}		
-		}
-	}
-	$data['movie'] = $movie->findMany($r);
+        foreach ($movie->findMany($r) as $item ){
+            foreach ($list as $value) {
+                //print_r($value->item);
+                //print_r(" ");
+                if($value->item == $item->MovieLensId){
+                    $movie->where('MovieLensId',$value->item)->update(['AverageRating'=>$value->rating]);
+                    //print_r($value->rating);
+                }		
+            }
+        }
+        
+	    $data['movie'] = $movie->findMany($r);
         return view('table',$data);
      }
 
@@ -82,64 +85,67 @@ public function index(Request $request, Movie $movie,Rate $rate){
             $request->session()->put('option', '2');
             $request->session()->put('recommend',$recommend);
         }
-            $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
-            if ($page <= 0) $page = 0;
-            $limit = 12;    
-            $offset = $page*$limit;
-            $recommend = $request->session()->get('recommend');
-            $list = $recommend['itemScores'];
-            
-            // todo: change recommend data
-            $data['item'] = $movie->paginate(12);
-            $data['page'] = $page;
-            $total = count($data['item']);
-            $data['next'] = $offset < $total;
-            $uid = Auth::id();
-            $result = $rate->where('user_id',$uid)->where('option',2)->get();
-            $history = $rate->where('user_id',$uid)->where('option',1)->get();
-            $r = array();
-                   $genres = array();
-	$blacklist = array();
-	foreach ($history as $value){
-		$m = Movie::find($value->video_id);
-		if ($value->rating > 3) {
-           		if ($m->Genre1 != NULL && array_key_exists($m->Genre1,$genres)) {
-               			$genres[$m->Genre1] ++;
-           		}
-           		else {
-               			$genres[$m->Genre1] = 1;
-           		}
-           		if ($m->Genre2 != NULL && array_key_exists($m->Genre2,$genres)) {
-               			$genres[$m->Genre2] ++;
-           		}
-           		else {
-               			$genres[$m->Genre2] = 1;
-           		}
-           		if ($m->Genre3 != NULL && array_key_exists($m->Genre3,$genres)) {
-               			$genres[$m->Genre3] ++;
-           		}
-           		else {
-               			$genres[$m->Genre3] = 1;
-           		}
-		}
-		else {
-			$blacklist [] = $value->video_id;
-		}
-	}
-            foreach ($result as $value ) {
+        if(empty($request->session()->get('recommend')))
+        {
+            return redirect()->route('index');
+        }
+        $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
+        if ($page <= 0) $page = 0;
+        $limit = 12;    
+        $offset = $page*$limit;
+        $recommend = $request->session()->get('recommend');
+        $list = $recommend['itemScores'];
+        
+        // todo: change recommend data
+        $data['item'] = $movie->paginate(12);
+        $data['page'] = $page;
+        $total = count($data['item']);
+        $data['next'] = $offset < $total;
+        $uid = Auth::id();
+        $result = $rate->where('user_id',$uid)->where('option',2)->get();
+        $history = $rate->where('user_id',$uid)->where('option',1)->get();
+        $r = array();
+        $genres = array();
+        $blacklist = array();
+        foreach ($history as $value){
+            $m = Movie::find($value->video_id);
+            if ($value->rating > 3) {
+                    if ($m->Genre1 != NULL && array_key_exists($m->Genre1,$genres)) {
+                            $genres[$m->Genre1] ++;
+                    }
+                    else {
+                            $genres[$m->Genre1] = 1;
+                    }
+                    if ($m->Genre2 != NULL && array_key_exists($m->Genre2,$genres)) {
+                            $genres[$m->Genre2] ++;
+                    }
+                    else {
+                            $genres[$m->Genre2] = 1;
+                    }
+                    if ($m->Genre3 != NULL && array_key_exists($m->Genre3,$genres)) {
+                            $genres[$m->Genre3] ++;
+                    }
+                    else {
+                            $genres[$m->Genre3] = 1;
+                    }
+            }
+            $blacklist [] = $value->video_id;
+        }
+        foreach ($result as $value ) {
             $r[] = $value->video_id;
-            }
-            arsort($genres);
-	$most_genre = key($genres);
-            $i = array();
-            foreach($list as $value){
-                $i[] = $value->item;
-            }
-            //print_r($genres);
-            //die();
-            $data['rate'] = $movie->findMany($r);
-            $data['item'] = $movie->wherein('MovieLensId',$i)->whereNotIn('MovieLensId',$blacklist)->where(function ($query) use ($most_genre){return $query->where('Genre1',$most_genre)->orWhere('Genre2',$most_genre)->orWhere('Genre3',$most_genre);})->paginate(12);
-            return view('recommend',$data);
+        }
+        arsort($genres);
+        $most_genre = key($genres);
+        $i = array();
+        foreach($list as $value){
+            $i[] = $value->item;
+        }
+        //print_r($genres);
+        //die();
+        $data['rate'] = $movie->findMany($r);
+        $data['item'] = $movie->wherein('MovieLensId',$i)->whereNotIn('MovieLensId',$blacklist)->where(function ($query) use ($most_genre){return $query->where('Genre1',$most_genre)->orWhere('Genre2',$most_genre)->orWhere('Genre3',$most_genre);})->paginate(12);
+        $request->session()->put('pageSession', $page);
+        return view('recommend',$data);
     }
 
      public function getRateVideo(Rate $rate, Movie $movie) {
@@ -174,7 +180,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
             //$update->rating = $rating;
             //$update->save();
             $rate->where('user_id','=',$uid)->where('video_id','=',$id)->update(array('rating' =>$rating));
-            echo "Update " .$r[$rating];
+            echo session()->get('pageSession');
             return;
         }
         // var_dump($update);
@@ -185,7 +191,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
             $rate->rating = $rating;
             $rate->option = $option;
             $rate->save();
-            echo $r[$rating];
+            echo session()->get('pageSession');
         }
         else {
             echo "fail";
@@ -201,7 +207,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
         }
         $limit = 15;
         $offset = $page*$limit;
-        $data['item'] = $movie->Where('Genre1',$key)->Where('Genre2',$key)->Where('Genre3',$key)->orWhere('MovieName','like','%'.$key.'%')->skip($offset)->take($limit)->get();
+        $data['item'] = $movie->orWhere('Genre1','like','%'.$key.'%')->orWhere('Genre2','like','%'.$key.'%')->orWhere('Genre3','like','%'.$key.'%')->orWhere('MovieName','like','%'.$key.'%')->skip($offset)->take($limit)->get();
         $data['page'] = $page;
         $total = count($data['item']);
         $data['next'] = $offset < $total;
@@ -220,6 +226,8 @@ public function index(Request $request, Movie $movie,Rate $rate){
             $h->rating = 0;
             $h->save();
         }*/
+        
+
         $option = $request->session()->get('option');
         $history = $h->where('user_id',$uid)->where('option',$option)->get();
         $his = array();
