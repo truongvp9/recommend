@@ -111,7 +111,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</nav>
 	<!-- NAVBAR END -->
-	
+	<div class="conain-fluid main-wrapper">
+		<div class='page-header'>
+			<div class="row">
+				<h3 class="col-sm-1">All Movies</h3>
+				<div class="col-sm-8 text-right">
+					<ul class="pagination">{{ $item->withPath('search?key='.$key) }}</ul>
+				</div>	
+			</div>
+		</div>
         
         <div class="col-sm-12 main">
         	<?php if ($page <=0) { ?>
@@ -124,10 +132,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<?php } else { ?>
 			<a href="javascript:;" class="page-nav page-next disabled"><span class="glyphicon glyphicon-chevron-next"></span></a>
 			<?php } ?>
+
 			<div class="main-grids">
 				<div class="top-grids">
 					<div class="recommended-info">
-						<h3>All Videos</h3>
 					</div>
                                         <?php foreach ($item as $i=>$value):?>
                                         	<?php if ($i%5 == 0) { ?>

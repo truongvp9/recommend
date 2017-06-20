@@ -20,13 +20,13 @@ class MoviesController extends Controller
 {
 
 public function index(Request $request, Movie $movie,Rate $rate){
-        $movies = $movie->where('id','>',50)->paginate(12);
+        $movies = $movie->where('id','>',50)->paginate(16);
         $request->session()->put('option', '1');
 	    // print_r($movies);
 	    // die();
 	    $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
-        $limit = 12;
+        $limit = 16;
         $total = $users = DB::table('movies')->count('id');
         $offset = $page*$limit;
         if ($offset < $total) {
@@ -91,13 +91,13 @@ public function index(Request $request, Movie $movie,Rate $rate){
         }
         $page = isset($_GET['page'])  ? intval($_GET['page']) : 0;
         if ($page <= 0) $page = 0;
-        $limit = 12;    
+        $limit = 16;    
         $offset = $page*$limit;
         $recommend = $request->session()->get('recommend');
         $list = $recommend['itemScores'];
         
         // todo: change recommend data
-        $data['item'] = $movie->paginate(12);
+        $data['item'] = $movie->paginate(16);
         $data['page'] = $page;
         $total = count($data['item']);
         $data['next'] = $offset < $total;
@@ -143,7 +143,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
         //print_r($genres);
         //die();
         $data['rate'] = $movie->findMany($r);
-        $data['item'] = $movie->wherein('MovieLensId',$i)->whereNotIn('MovieLensId',$blacklist)->where(function ($query) use ($most_genre){return $query->where('Genre1',$most_genre)->orWhere('Genre2',$most_genre)->orWhere('Genre3',$most_genre);})->paginate(12);
+        $data['item'] = $movie->wherein('MovieLensId',$i)->whereNotIn('MovieLensId',$blacklist)->where(function ($query) use ($most_genre){return $query->where('Genre1',$most_genre)->orWhere('Genre2',$most_genre)->orWhere('Genre3',$most_genre);})->paginate(16);
         $request->session()->put('pageSession', $page);
         return view('recommend',$data);
     }
@@ -207,11 +207,12 @@ public function index(Request $request, Movie $movie,Rate $rate){
         }
         $limit = 15;
         $offset = $page*$limit;
-        $data['item'] = $movie->orWhere('Genre1','like','%'.$key.'%')->orWhere('Genre2','like','%'.$key.'%')->orWhere('Genre3','like','%'.$key.'%')->orWhere('MovieName','like','%'.$key.'%')->skip($offset)->take($limit)->get();
+        $data['item'] = $movie->orWhere('Genre1','like','%'.$key.'%')->orWhere('Genre2','like','%'.$key.'%')->orWhere('Genre3','like','%'.$key.'%')->orWhere('MovieName','like','%'.$key.'%')->skip($offset)->take($limit)->paginate(16);
         $data['page'] = $page;
         $total = count($data['item']);
         $data['next'] = $offset < $total;
         $data['key'] = isset($_POST['key'])?$_POST['key']:$_GET['key'];
+        $request->session()->put('pageSession', '?key='.$key.'&page='.$page);
         return view('search',$data);
      }
 
@@ -229,7 +230,7 @@ public function index(Request $request, Movie $movie,Rate $rate){
         
 
         $option = $request->session()->get('option');
-        $history = $h->where('user_id',$uid)->where('option',$option)->get();
+        $history = $h->where('user_id',$uid)->where('option',$option)->take(5)->get();
         $his = array();
         foreach ($history as $value ) {
             $his[] = $value->video_id;

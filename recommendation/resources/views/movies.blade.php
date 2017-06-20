@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				<div class="page-header">
 					<div class="row">
-                		<div class="col-sm-4" data-intro="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá" data-step="2">
+                		<div class="col-sm-4">
 							<h2 class="has-tooltip" title="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">All Movies</h2>
 						</div>
 						<div class="col-sm-4 clearfix text-center">
@@ -128,10 +128,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 		
 				
-				<div class="main-grids">
-					<div class="clearfix top-grids"  >
+				<div class="col-sm-12 main-grids">
+					<div class="clearfix top-grids" data-intro="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá" data-step="2" >
 						<?php foreach ($item as $i=>$value):?>
-						<div class="resent-grid slider-top-grids" style="height: 50vh;">
+						<div class="resent-grid slider-top-grids" style="height: 38vh;">
+							<div class="resent-grid-img bxslider">
+								<a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
+								<div class="time"><p>3:04</p></div>
+								<div class="clck">
+									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+								</div>
+							</div>
+							<div class="resent-grid-info">
+								<h4><a href="/movies/<?=$value->id;?>" class="title title-info"><?php echo $value->MovieName;?></a><br></h4>
+								<p class="author"><?php echo $value->getCategory($value->id);?></p>
+							</div>
+						</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+
+				<div class="col-sm-12 main-grids">
+					<div class="clearfix top-grids" data-intro="Đây là danh sách movies, Bạn hãy chọn bộ phim bạn đã xem và đánh giá" data-step="2" >
+						<?php foreach ($item as $i=>$value):?>
+						<div class="resent-grid slider-top-grids" style="height: 38vh;">
 							<div class="resent-grid-img bxslider">
 								<a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
 								<div class="time"><p>3:04</p></div>
@@ -150,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- LEFT END -->
 			<div class="main col-lg-1 col-md-3">
-				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History</h5>
+				<h5 class="has-tooltip" title="Đây là danh sách các phim bạn đã đánh giá">History <?php echo "(".count($rate).")" ?></h5>
 				<a class='btn btn-danger' href='/deleteallhistory/1'>Clear History</a>
 				<br>
 				<br>
@@ -194,9 +214,10 @@ $(document).ready(function(){
 				processData : false,
 				data : '{ "user":"'+user+'", "num": 500, "ratingFlag": 0 }',
 				success: function(data){
-									$('#irecommend').val(JSON.stringify(data));
 					console.log("Data:",JSON.stringify(data));
-									$('#frecommend').submit();		
+					$('#irecommend').val(JSON.stringify(data));
+					
+					$('#frecommend').submit();		
 				},
 				error: function(err){
 					alert("Error: Cannot get data",err);		

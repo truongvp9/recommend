@@ -36,6 +36,12 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 .stars span {
 	color: yellow;
 }
+.introjs-tooltiptext {
+	font-size: 20px;
+}
+.introjs-button {
+	font-size: 20px;
+}
 .sidebar {
     top: 80px;
     background: #272c2e;
@@ -473,7 +479,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
   	min-height: 1px;
   	padding-left: 5px;
   	padding-right: 5px;
-  	width: 16.666%;
+  	width: 12%;
   	float: left;
 }
 .resent-grid-img{
@@ -570,6 +576,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
 .resent-grid-info{
 	background: #f7f7f7;
 	padding: 0 5px 5px;
+	overflow:auto;
 }
 .resent-grid-info a.title{
   margin: 0;
@@ -940,7 +947,7 @@ select.form-control.bfh-countries:hover {
 }
 .single-right{
 	background: #f7f7f7;
-    padding: 3em 0 0 3em;
+    padding: 3em 0 0 3em
 }
 .show-right-grids {
   margin-bottom: 1.5em;
@@ -1080,30 +1087,29 @@ select.form-control.bfh-countries:hover {
 }
 /*-- published --*/
 .published{
-    margin: 1em 0 0 0;
-    padding-left: 0;
     background: #f7f7f7;
-    padding: 1em;
+	width:200px;
 }
-.published h4{
+.published h3{
     color: #717171;
-    font-size: 13px;
-    margin: 0;
+	font-size: 32px;
+    margin-top: 1em;
     line-height: 1.5em;
-    font-weight: 600;
+	font-weight: bold;
 }
 .published p {
-    font-size: 13px;
+    font-size: 16px;
     color: #9E9E9E;
     margin: 1em 0;
     line-height: 1.8em;
+	font-weight: bold;
 }
 /*-- load-more --*/
 #myList ul{
 margin:0;
 }
 #myList li{ 
-	display:none;
+	display:inline-block;
 	list-style-type:none;
 }
 .blog-text:after{
@@ -2869,12 +2875,27 @@ background: url(../images/social.png) no-repeat 0px 0px;
 	padding: 20px 0 10px;
 }
 .page-header h1,
-.page-header h2,
+.page-header h2{
+	display: block;
+	margin: 0;
+	padding-top: 10px;
+	width: auto;
+	font-weight: bold;
+	font-size: 40px;
+}
+
 .page-header h3 {
 	display: block;
 	margin: 0;
-	padding:  0;
-	float: left;
+	padding-top: 10px;
+	padding-left: 200px;
+	width: 20%;
+	font-weight: bold;
+	font-size: 32px;
+}
+.page-header .row{
+	padding-top: 30px;
+	height: 100%;
 }
 .page-header .pagination {
 	padding: 0;

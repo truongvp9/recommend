@@ -1079,7 +1079,7 @@ select.form-control.bfh-countries:hover {
 margin:0;
 }
 #myList li{ 
-	display:none;
+	display:inline-block;
 	list-style-type:none;
 }
 .blog-text:after{

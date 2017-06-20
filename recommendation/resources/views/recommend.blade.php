@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="main col-lg-11 col-md-9">
 				<div class="page-header">
 					<div class="row">
-						<div class="col-sm-4" data-step="1" data-intro="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá">
+						<div class="col-sm-4">
                                                         
 							<h2 class="has-tooltip" title="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá ">Recommended Movies</h2>
 						</div>
@@ -119,9 +119,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 				
 				<div class="main-grids">
-					<div class="clearfix top-grids">
+					<div class="clearfix top-grids" data-step="1" data-intro="Đây là danh sách các bộ phim được gợi ý cho bạn. Bạn hãy chọn bộ phim bạn đã xem và đánh giá">
 						<?php foreach ($item as $i=>$value):?>
-						<div class="resent-grid slider-top-grids">
+						<div class="resent-grid slider-top-grids" style="height: 38vh;">
 							<div class="resent-grid-img bxslider">
 								<a href="/movies/<?=$value->id;?>"><img src="https://image.tmdb.org/t/p/w500/<?php echo $value->Image;?>" alt="" /></a>
 								<div class="time"><p>3:04</p></div>

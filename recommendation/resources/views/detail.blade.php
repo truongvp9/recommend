@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- NAVBAR END -->
 		<!-- MAIN SECTION -->
 		<div class="container-fluid main">
-			<div class="col-sm-7 col-sm-offset-2">
+			<div class="col-sm-6 col-sm-offset-2">
 				<div class="page-header">
 					<h2><?= html_entity_decode($movie->MovieName) ?></h2>
 				</div>
@@ -120,79 +120,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-sm-4">
 							<!-- BEGIN RATING -->
-							<h3>Rate this</h3> 
-                            <div class="help-grids">
-                                    <div class="help-button-bottom">
-                                            <p><a id="5" href="#" class="rate play-icon popup-with-zoom-anim">5. Great</a></p>
-                                    </div>
-                                    <div class="help-button-bottom">
-                                            <p><a id="4" href="#" class="rate play-icon popup-with-zoom-anim">4. Very Good</a></p>
-                                    </div>
-                                    <div class="help-button-bottom">
-                                            <p><a id="3" href="#" class="rate play-icon popup-with-zoom-anim">3. What ever</a></p>
-                                    </div>
-                                    <div class="help-button-bottom">
-                                            <p><a id="2" href="#" class="rate play-icon popup-with-zoom-anim">2. Not good</a></p>
-                                    </div>
-                                    <div class="help-button-bottom">
-                                            <p><a id="1" href="#" class="rate play-icon popup-with-zoom-anim">1. Bad</a></p>
-                                    </div>
-                                    <div class="help-button-bottom">
-                                            <p><a id="0" href="#" class="rate play-icon popup-with-zoom-anim">Not sure</a></p>
-                                    </div>
-                            </div>
+							<h3 style = "font-size:32px">Rate this</h3> 
+							<div class="help-grids">
+								<div class="help-button-bottom">
+									<p><a id="5" href="#" class="rate play-icon popup-with-zoom-anim">5. Great</a></p>
+								</div>
+								<div class="help-button-bottom">
+									<p><a id="4" href="#" class="rate play-icon popup-with-zoom-anim">4. Very Good</a></p>
+								</div>
+								<div class="help-button-bottom">
+									<p><a id="3" href="#" class="rate play-icon popup-with-zoom-anim">3. What ever</a></p>
+								</div>
+								<div class="help-button-bottom">
+									<p><a id="2" href="#" class="rate play-icon popup-with-zoom-anim">2. Not good</a></p>
+								</div>
+								<div class="help-button-bottom">
+									<p><a id="1" href="#" class="rate play-icon popup-with-zoom-anim">1. Bad</a></p>
+								</div>
+								<div class="help-button-bottom">
+									<p><a id="0" href="#" class="rate play-icon popup-with-zoom-anim">Not sure</a></p>
+								</div>
+							</div>
 							<!-- END RATING -->
+							<div class="published">
+								<div class="load_more">	
+									<ul id="myList">
+										<li>
+											<h3>Overview</h3>
+											<p id='overview'></p>
+												<div class="clearfix"> 
+
+												</div>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="published">
-						<div class="load_more">	
-							<ul id="myList">
-								<li>
-									<h4>Published on 15 June 2015</h4>
-									<p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-								</li>
-								<li>
-									<p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-									<p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-									<div class="load-grids">
-										<div class="load-grid">
-											<p>Category</p>
-										</div>
-										<div class="load-grid">
-											<a href="movies.html">Entertainment</a>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-								</li>
-							</ul>
+			</div>
+				
+			<div class="col-sm-3 single-right"> 
+                             
+				<h3>Rated History</h3>
+				<div class="single-grid-right">
+					<?php if ($history) { ?>
+					<?php foreach ($history as $mov) { ?>
+					<div class="single-right-grids">
+						<div class="col-md-4 single-right-grid-left">
+							<a href="/movies/<?= $mov->id;?>">
+							<img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
+							</a>
 						</div>
+						<div class="col-md-8 single-right-grid-right">
+							<a href="/movies/<?= $mov->id;?>">
+							<h4 class="media-title"><?= $mov->MovieName ?></h4>
+							<div class="stars"> <?=$mov->getRate($mov->id);?> </div>
+							</a>
+						</div>
+					</div>
+					<?php } ?>
+					<?php } ?>
 				</div>
 			</div>
-			<div class="col-sm-3 single-right">
-                             
-			<h3>Rate History</h3>
-                        <div class="single-grid-right">
-			<?php if ($history) { ?>
-                            <?php foreach ($history as $mov) { ?>
-                            <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="/movies/<?= $mov->id;?>">
-                                            <img class="media-object mov-img" src="https://image.tmdb.org/t/p/w500/<?= $mov->Image;?>">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                            <a href="/movies/<?= $mov->id;?>">
-                                            <h4 class="media-title"><?= $mov->MovieName ?></h4>
-                                            <div class="stars"> <?=$mov->getRate($mov->id);?> </div>
-                                            </a>
-                                    </div>
-                            </div>
-                            <?php } ?>
-			<?php } ?>
-                        </div>
-		</div>
                 </div>
 		</div>
                 <form method="POST" id="frecommend" action="/recommend">
@@ -209,7 +200,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
   </body>
   <script>
+	  
     $(document).ready(function () {
+	var settings = {
+		"async":true,
+		"crossDomain":true,
+		"url":"https://api.themoviedb.org/3/movie/"+<?=$movie->TmdbId;?>+"?api_key=3fae97dd48b9aa091688c08d994c23f1&language=en-US",
+		"method": "GET",
+		"headers":{},
+		"data": "{}"
+	}
+	$.ajax(settings).done(function(response){
+		console.log(response.overview);
+		$('#overview').text(response.overview);
+	});
         var url = '<?=$url;?>';
         //alert('hi');
         var user = {{Auth::Id()}};
@@ -243,12 +247,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 });
                         }
                   //alert( "Rating " + msg );
-                  if (option == 1) {
+		  var msgConverter = parseInt(msg);
+		  //alert(typeof(msgConverter));
+		  //alert(msgConverter);
+                  if (option == 1 && !isNaN(msgConverter)) {
+			  //alert("asd");
                           document.location.href='/index.php?page='+msg;
                   }
-                  else {
+                  else if(option == 2  && !isNaN(msgConverter)){
                   	document.location.href='/recommend?page='+msg;
                   }
+		  else
+		  {
+			//alert("msg:"+msg);
+			document.location.href='/search'+msg;
+		  }
                 });
             });
         });
